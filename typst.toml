@@ -1,0 +1,11 @@
+[package]
+name = "template"
+version = "0.1.0"
+entrypoint = "template/template.typ"
+categories = [ ]
+disciplines = [ ]
+
+[template]
+path = "template"
+entrypoint = "template.typ"
+thumbnail = ""
