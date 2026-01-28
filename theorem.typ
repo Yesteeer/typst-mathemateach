@@ -121,8 +121,8 @@
 
   reference: (
     supplement: it => [#context{get-theorem-title(text.lang).at(it.kind)}],
-    numbering: if counter != none {it => {
+    numbering: it => if it.counter != none {it => {
       (..nums) => (it.counter.display)()
-    }} else {none}
+    }} else {"1.1"}
   ),
 )
