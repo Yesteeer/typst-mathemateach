@@ -1,11 +1,11 @@
 [package]
 name = "teaching-template"
 version = "0.1.0"
-entrypoint = "teaching-template.typ"
+entrypoint = "lib.typ"
 categories = [ ]
 disciplines = [ ]
 
 [template]
-path = "default"
+path = "template"
 entrypoint = "main.typ"
 thumbnail = ""
