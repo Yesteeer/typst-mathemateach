@@ -2,7 +2,7 @@
 #import "@preview/rich-counters:0.2.2" as rc
 #import "@preview/elembic:1.1.1" as e
 
-#import "../../theorem/theorem-core.typ": (
+#import "../src/theorem-core.typ": (
   theorem_,
   set-theorem,
   set-theorem-body-style,
@@ -13,7 +13,7 @@
   set-theorem-title-style
 )
 
-#import "../../lang.typ": get-theorem-title
+#import "../src/lang.typ": get-theorem-title
 
 // basic theorem block
 
@@ -72,35 +72,35 @@
     ),
     
     // styling applied to example environment
-    e.cond-set(theorem_.with(kind: "exercise"),
-      title: [#get-theorem-title("exercise")]
+    e.cond-set(example,
+      title: [#get-theorem-title("example")]
     ),
 
     // styling applied to theorem environment
-    e.cond-set(theorem_.with(kind: "theorem"),
+    e.cond-set(theorem,
       title: [#get-theorem-title("theorem")]
     ),
 
     // styling applied to remark environment
-    e.cond-set(theorem_.with(kind: "remark"),
+    e.cond-set(remark,
       title: [#get-theorem-title("remark")],
       counter: none,
     ),
 
     // styling applied to proof environment
-    e.cond-set(theorem_.with(kind: "proof"),
+    e.cond-set(proof,
       title: [_#get-theorem-title("proof") :_],
       counter: none,
       footer: [#text(size: 18pt, sym.square.stroked)]
     ),
 
-    e.filtered(theorem_.with(kind: "proof"),
+    e.filtered(proof,
       set-theorem-title-style(
         weight: "regular"
       )
     ),
 
-    e.filtered(theorem_.with(kind: "proof"),
+    e.filtered(proof,
       set-theorem-frame(
         body-inset: (x: .5em),
         title-inset: (x: .5em),
@@ -108,7 +108,7 @@
       )
     ),
 
-    e.filtered(theorem_.with(kind: "proof"),
+    e.filtered(proof,
       set-theorem-footer-style(
         align: end,
       )

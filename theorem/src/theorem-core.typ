@@ -7,7 +7,7 @@
 #import "footer-style.typ": *
 #import "sep.typ": *
 #import "shadow.typ": *
-#import "../lang.typ": get-theorem-title
+#import "lang.typ": get-theorem-title
 
 #let theorem_ = e.element.declare(
   "theorem",
