@@ -1,4 +1,4 @@
 // import styles
-#import "styles/styles.typ"
+#import "features/features.typ"
 #import "theorem/theorem.typ": theorem_ as generic-theorem
-#import "styles/default.typ": *
+#import "features/default.typ": *
