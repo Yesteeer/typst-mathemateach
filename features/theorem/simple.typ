@@ -2,7 +2,7 @@
 #import "@preview/rich-counters:0.2.2" as rc
 #import "@preview/elembic:1.1.1" as e
 
-#import "../theorem/theorem.typ": (
+#import "../../theorem/theorem-core.typ": (
   theorem_,
   set-theorem,
   set-theorem-body-style,
@@ -13,7 +13,7 @@
   set-theorem-title-style
 )
 
-#import "../lang.typ": get-theorem-title
+#import "../../lang.typ": get-theorem-title
 
 // basic theorem block
 
@@ -36,7 +36,7 @@
 
 // show rule to apply style
 
-#let apply-theorem-style(body, counter-level: none) = {
+#let show-theorem(body, counter-level: none) = {
 
   // prepare call for elembic
   show: e.prepare()

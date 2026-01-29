@@ -1,2 +1,2 @@
 #import "default.typ"
-#import "simple-theorem.typ"
+#import "theorem/theorem.typ"
