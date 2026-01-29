@@ -1,38 +1,13 @@
 #import "@preview/elembic:1.1.1" as e
 #import "@preview/showybox:2.0.4" as showybox
 
-#import "theorem/frame.typ": *
-#import "theorem/title-style.typ": *
-#import "theorem/body-style.typ": *
-#import "theorem/footer-style.typ": *
-#import "theorem/sep.typ": *
-#import "theorem/shadow.typ": *
-
-// translations for theorem names
-#let get-theorem-title(lang) = (
-  if lang == "fr" {
-    (
-      "thm": "Théorème",
-      "ex": "Exemple",
-      "rem": "Remarque",
-      "proof": "Démonstration",
-    )
-  } else if lang == "de" {
-    (
-      "thm": "Satz",
-      "ex": "Beispiel",
-      "rem": "Bemerkung",
-      "proof": "Beweis",
-    )
-  } else {
-    (
-      "thm": "Theorem",
-      "ex": "Example",
-      "rem": "Remark",
-      "proof": "Proof",
-    )
-  }
-)
+#import "frame.typ": *
+#import "title-style.typ": *
+#import "body-style.typ": *
+#import "footer-style.typ": *
+#import "sep.typ": *
+#import "shadow.typ": *
+#import "../lang.typ": get-theorem-title
 
 #let theorem_ = e.element.declare(
   "theorem",
@@ -85,7 +60,7 @@
 
   fields: (
     e.field("body", e.types.any, required: true),
-    e.field("kind", str, default: "thm"),
+    e.field("kind", str, default: "theorem"),
     e.field("counter", e.types.any, default: none),
     e.field("title", e.types.union(str, content), default: ""),
     e.field("footer", e.types.union(str, content), default: ""),
@@ -120,9 +95,19 @@
   },
 
   reference: (
-    supplement: it => [#context{get-theorem-title(text.lang).at(it.kind)}],
-    numbering: it => if it.counter != none {it => {
+    supplement: it => [#context{get-theorem-title(text.lang).at(it.kind, default: it.kind)}],
+    numbering: it => if it.counter != none {
       (..nums) => (it.counter.display)()
-    }} else {"1.1"}
+    } else {"1.1"}
   ),
 )
+
+// custom set rules
+
+#let set-theorem-sep = e.set_.with(sep)
+#let set-theorem = e.set_.with(theorem_)
+#let set-theorem-frame = e.set_.with(frame)
+#let set-theorem-shadow = e.set_.with(shadow)
+#let set-theorem-body-style= e.set_.with(body-style)
+#let set-theorem-title-style = e.set_.with(title-style)
+#let set-theorem-footer-style = e.set_.with(footer-style)

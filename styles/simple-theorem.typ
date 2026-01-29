@@ -1,12 +1,42 @@
 #import "@preview/showybox:2.0.4": showybox
 #import "@preview/rich-counters:0.2.2" as rc
+#import "@preview/elembic:1.1.1" as e
 
-#import "../theorem.typ": *
-#import "../typing.typ": *
+#import "../theorem/theorem.typ": (
+  theorem_,
+  set-theorem,
+  set-theorem-body-style,
+  set-theorem-footer-style,
+  set-theorem-frame,
+  set-theorem-sep,
+  set-theorem-shadow,
+  set-theorem-title-style
+)
 
-// theorem environments styling
+#import "../lang.typ": get-theorem-title
 
-#let simple-theorem-style(body, counter-level: none) = {
+// basic theorem block
+
+#let theorem = theorem_.with(
+  kind: "theorem",
+)
+
+#let example = theorem_.with(
+  kind: "exercise"
+)
+
+#let remark = theorem_.with(
+  kind: "remark"
+)
+
+#let proof = theorem_.with(
+  kind: "proof"
+)
+
+
+// show rule to apply style
+
+#let apply-theorem-style(body, counter-level: none) = {
 
   // prepare call for elembic
   show: e.prepare()
@@ -42,24 +72,24 @@
     ),
     
     // styling applied to example environment
-    e.cond-set(theorem_.with(kind: "ex"),
-      title: [#context{get-theorem-title(text.lang).at("ex")}]
+    e.cond-set(theorem_.with(kind: "exercise"),
+      title: [#get-theorem-title("exercise")]
     ),
 
     // styling applied to theorem environment
-    e.cond-set(theorem_.with(kind: "thm"),
-      title: [#context{get-theorem-title(text.lang).at("thm")}]
+    e.cond-set(theorem_.with(kind: "theorem"),
+      title: [#get-theorem-title("theorem")]
     ),
 
     // styling applied to remark environment
-    e.cond-set(theorem_.with(kind: "rem"),
-      title: [#context{get-theorem-title(text.lang).at("rem")}],
+    e.cond-set(theorem_.with(kind: "remark"),
+      title: [#get-theorem-title("remark")],
       counter: none,
     ),
 
     // styling applied to proof environment
     e.cond-set(theorem_.with(kind: "proof"),
-      title: [_#context{get-theorem-title(text.lang).at("proof")} :_],
+      title: [_#get-theorem-title("proof") :_],
       counter: none,
       footer: [#text(size: 18pt, sym.square.stroked)]
     ),

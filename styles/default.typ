@@ -1,6 +1,6 @@
 // basic styling
 
-#let basic-style(body, lang: "fr") = {
+#let apply-default(body, lang: "fr") = {
   // set default text properties
   set text(font: "New Computer Modern Sans", size: 11pt, lang: lang)
 
@@ -13,7 +13,7 @@
   set par(
     justify: true,
   )
-
+  
   // set default math font
   show math.equation: set text(font: "New Computer Modern Math", fallback: false)
 
