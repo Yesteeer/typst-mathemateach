@@ -56,6 +56,56 @@
     de: "Axiom",
     en: "Axiom",
   ),
+  proposition: (
+    fr: "Proposition",
+    de: "Proposition",
+    en: "Proposition"
+  ),
+  problem: (
+    fr: "Problème",
+    en: "Problem",
+    de: "Problem"
+  ),
+  assumption: (
+    fr: "Hypothèse",
+    en: "Assumption",
+    de: "Annahme"
+  ),
+  conclusion: (
+    fr: "Conclusion",
+    en: "Conclusion",
+    de: "Schlussfolgerung"
+  ),
+  property: (
+    fr: "Propriété",
+    en: "Property",
+    de: "Eigenschaft"
+  ),
+  solution: (
+    fr: "Solution",
+    en: "Solution",
+    de: "Lösung"
+  ),
+  tip: (
+    fr: "Conseil",
+    en: "Tip",
+    de: "Hinweis"
+  ),
+  important: (
+    fr: "Important",
+    en: "Important",
+    de: "Wichtig"
+  ),
+  conjecture: (
+    fr: "Conjecture",
+    en: "Conjecture",
+    de: "Vermutung"
+  ),
+  caution: (
+    fr: "Attention",
+    en: "Caution",
+    de: "Vorsicht"
+  ),
 )
 
 #let get-theorem-title(kind) = (
