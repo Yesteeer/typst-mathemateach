@@ -25,6 +25,10 @@
   kind: "exercise"
 )
 
+#let definition = theorem_.with(
+  kind: "definition"
+)
+
 #let remark = theorem_.with(
   kind: "remark"
 )
@@ -71,43 +75,33 @@
     ),
     
     // styling applied to example environment
-    e.cond-set(example,
+    set-theorem(example,
       title: [_#get-theorem-title("example")_]
     ),
 
     // styling applied to theorem environment
-    e.cond-set(theorem,
+    set-theorem(theorem,
       title: [*#get-theorem-title("theorem")*]
     ),
 
     // styling applied to remark environment
-    e.cond-set(remark,
-      title: [*#get-theorem-title("remark")*],
+    set-theorem(remark,
+      title: [#get-theorem-title("remark")],
       counter: none,
     ),
 
     // styling applied to proof environment
-    e.cond-set(proof,
+    set-theorem(proof,
       counter: none,
     ),
 
-    e.filtered(proof,
-      set-theorem-title-style(
-        weight: "regular"
-      )
+    set-theorem-title-style(proof,
+      weight: "regular"
     ),
 
-    e.filtered(proof,
-      set-theorem-frame(
-        body-inset: (x: 1em),
-        footer-inset: (x: .5em, y: .0em),
-      )
-    ),
-
-    e.filtered(proof,
-      set-theorem-footer-style(
-        align: end,
-      )
+    set-theorem-frame(proof,
+      body-inset: (x: 1em),
+      footer-inset: (x: .5em, y: .0em),
     ),
     
   )

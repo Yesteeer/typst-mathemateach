@@ -1,15 +1,15 @@
 #import "@preview/elembic:1.1.1" as e
 #import "@preview/showybox:2.0.4" as showybox
 
-#import "frame.typ": *
-#import "title-style.typ": *
-#import "body-style.typ": *
-#import "footer-style.typ": *
-#import "sep.typ": *
-#import "shadow.typ": *
+#import "frame.typ": frame, set-theorem-frame
+#import "title-style.typ": title-style, set-theorem-title-style
+#import "body-style.typ": body-style, set-theorem-body-style
+#import "footer-style.typ": footer-style, set-theorem-footer-style
+#import "sep.typ": sep, set-theorem-sep
+#import "shadow.typ": shadow, set-theorem-shadow
 #import "lang.typ": get-theorem-title
 
-#let make-title(title, counter, suffix) = {
+#let resolve-title(title, counter, suffix) = {
   let final-title = title
   if title != "" {final-title += " "}
   if counter != none {
@@ -22,47 +22,54 @@
   return final-title
 }
 
+#let resolve-shadow(actual-shadow, arg-shadow) = {
+  let shadow = actual-shadow+ arg-shadow
+  let color = shadow.color
+  let offset = shadow.offset
+  if color == none {
+    if offset == none {
+      none
+    } else {
+      (color: luma(128), offset: offset)
+    }
+  } else if offset == none {
+    (color: color, offset: 5pt)
+  } else {
+    shadow
+  }
+}
+
+#let resolve-spacing(above, below) = {
+  if above == none {
+    none
+  } else {
+    (above: above)
+  } + if below == none {
+    none
+  } else {
+    (below: below)
+  }
+}
+
 #let theorem_ = e.element.declare(
   "theorem",
   prefix: "carex",
   
   display: it => e.get(get => {
     let args = (
-      title: make-title(it.title, it.counter, it.name),
+      title: resolve-title(it.title, it.counter, it.name),
       footer: it.footer,
       frame: get(frame) + it.frame,
       title-style: get(title-style) + it.title-style,
       body-style: get(body-style) + it.body-style,
       footer-style: get(footer-style) + it.footer-style,
       sep: get(sep) + it.footer-style,
-      shadow: {let shadow = get(shadow) + it.shadow
-        let color = shadow.color
-        let offset = shadow.offset
-        if color == none {
-          if offset == none {
-            none
-          } else {
-            (color: luma(128), offset: offset)
-          }
-        } else if offset == none {
-          (color: color, offset: 5pt)
-        } else {
-          shadow
-        }
-      },
+      shadow: resolve-shadow(get(shadow), it.shadow),
       width: it.width,
       align: it.align,
       breakable: it.breakable,
       spacing: it.spacing,
-    ) + if it.above == none {
-      none
-    } else {
-      (above: it.above)
-    } + if it.below == none {
-      none
-    } else {
-      (below: it.below)
-    }
+    ) + resolve-spacing(it.above, it.below)
     showybox.showybox(
       ..args,
       ..it.body
@@ -109,19 +116,24 @@
   },
 
   reference: (
-    supplement: it => [#context{get-theorem-title(text.lang).at(it.kind, default: it.kind)}],
+    supplement: it => [#context{get-theorem-title(it.kind)}],
     numbering: it => if it.counter != none {
       (..nums) => (it.counter.display)()
     } else {"1.1"}
   ),
 )
 
-// custom set rules
+// custom set rule for theorem
 
-#let set-theorem-sep = e.set_.with(sep)
-#let set-theorem = e.set_.with(theorem_)
-#let set-theorem-frame = e.set_.with(frame)
-#let set-theorem-shadow = e.set_.with(shadow)
-#let set-theorem-body-style= e.set_.with(body-style)
-#let set-theorem-title-style = e.set_.with(title-style)
-#let set-theorem-footer-style = e.set_.with(footer-style)
+#let set-theorem_ = e.set_.with(theorem_)
+
+// custom set rule with theorem selector
+
+#let set-theorem(..rules) = it => {
+  show: if rules.pos() == () {set-theorem_(..rules.named())} else {
+    e.cond-set(rules.pos().first(),
+      ..rules.named()
+    )
+  }
+  it
+}

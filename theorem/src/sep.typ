@@ -13,3 +13,18 @@
     e.field("gutter", relative, default: 0.65em),
   )
 )
+
+// custom set rule for sep
+
+#let set-sep = e.set_.with(sep)
+
+// custom set rule with theorem selector
+
+#let set-theorem-sep(..rules) = it => {
+  show: if rules.pos() == () {set-sep(..rules.named())} else {
+    e.filtered(rules.pos().first(),
+      set-sep(..rules.named())
+    )
+  }
+  it
+}

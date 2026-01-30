@@ -15,3 +15,18 @@
     e.field("boxed-style", e.types.option(dictionary), default: none),
   )
 )
+
+// custom set rule for title-style
+
+#let set-title-style = e.set_.with(title-style)
+
+// custom set rule with theorem selector
+
+#let set-theorem-title-style(..rules) = it => {
+  show: if rules.pos() == () {set-title-style(..rules.named())} else {
+    e.filtered(rules.pos().first(),
+      set-title-style(..rules.named())
+    )
+  }
+  it
+}

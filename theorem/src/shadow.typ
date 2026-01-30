@@ -12,3 +12,18 @@
     e.field("offset", e.types.union(none, relative, dictionary), default: none),
   )
 )
+
+// custom set rule for shadow
+
+#let set-shadow = e.set_.with(shadow)
+
+// custom set rule with theorem selector
+
+#let set-theorem-shadow(..rules) = it => {
+  show: if rules.pos() == () {set-shadow(..rules.named())} else {
+    e.filtered(rules.pos().first(),
+      set-shadow(..rules.named())
+    )
+  }
+  it
+}

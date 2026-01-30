@@ -21,3 +21,18 @@
     e.field("footer-inset", e.types.union(relative, dictionary), default: (x: 1em, y: 0.65em)),
   )
 )
+
+// custom set rule for frame
+
+#let set-frame = e.set_.with(frame)
+
+// custom set rule with theorem selector
+
+#let set-theorem-frame(..rules) = it => {
+  show: if rules.pos() == () {set-frame(..rules.named())} else {
+    e.filtered(rules.pos().first(),
+      set-frame(..rules.named())
+    )
+  }
+  it
+}
