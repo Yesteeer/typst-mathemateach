@@ -9,13 +9,26 @@
 #import "shadow.typ": *
 #import "lang.typ": get-theorem-title
 
+#let make-title(title, counter, suffix) = {
+  let final-title = title
+  if title != "" {final-title += " "}
+  if counter != none {
+    if text(title).func() == emph {final-title += emph((counter.display)())}
+    else if text(title).func() == strong {final-title += strong((counter.display)())}
+    else {final-title += (counter.display)()}
+    final-title += " "
+  }
+  final-title += suffix
+  return final-title
+}
+
 #let theorem_ = e.element.declare(
   "theorem",
   prefix: "carex",
   
   display: it => e.get(get => {
     let args = (
-      title: it.title + if it.counter != none {if it.title != "" {h(.4em)} ; (it.counter.display)()},
+      title: make-title(it.title, it.counter, it.name),
       footer: it.footer,
       frame: get(frame) + it.frame,
       title-style: get(title-style) + it.title-style,
@@ -63,6 +76,7 @@
     e.field("kind", str, default: "theorem"),
     e.field("counter", e.types.any, default: none),
     e.field("title", e.types.union(str, content), default: ""),
+    e.field("name", e.types.union(str, content), default: ""),
     e.field("footer", e.types.union(str, content), default: ""),
     e.field("frame", e.types.option(dictionary), default: none),
     e.field("title-style", e.types.option(dictionary), default: none),

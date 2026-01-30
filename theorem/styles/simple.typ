@@ -60,38 +60,35 @@
     ),
     set-theorem-title-style(
         color: black,
-        weight: "bold",
-        sep-thickness: 0pt
+        sep-thickness: 1pt
     ),
     set-theorem-frame(
         title-color: white,
         border-color: white,
         footer-color: white,
         body-inset: (x: 0em, y: 0.65em),
-        title-inset: (x: 0em, y: 0.35em),
+        title-inset: (x: 0em, y: 0.15em),
     ),
     
     // styling applied to example environment
     e.cond-set(example,
-      title: [#get-theorem-title("example")]
+      title: [_#get-theorem-title("example")_]
     ),
 
     // styling applied to theorem environment
     e.cond-set(theorem,
-      title: [#get-theorem-title("theorem")]
+      title: [*#get-theorem-title("theorem")*]
     ),
 
     // styling applied to remark environment
     e.cond-set(remark,
-      title: [#get-theorem-title("remark")],
+      title: [*#get-theorem-title("remark")*],
       counter: none,
     ),
 
     // styling applied to proof environment
     e.cond-set(proof,
-      title: [_#get-theorem-title("proof") :_],
       counter: none,
-      footer: [#text(size: 18pt, sym.square.stroked)]
     ),
 
     e.filtered(proof,
@@ -102,8 +99,7 @@
 
     e.filtered(proof,
       set-theorem-frame(
-        body-inset: (x: .5em),
-        title-inset: (x: .5em),
+        body-inset: (x: 1em),
         footer-inset: (x: .5em, y: .0em),
       )
     ),
@@ -117,3 +113,10 @@
   )
   body
 }
+
+#let proof(..args, body) = theorem_(
+  ..args.named(),
+  kind: "proof",
+  [_#get-theorem-title("proof"):_] + h(1em) + body + h(1fr) + h(1.2em) + box(height: 0.65em, text(1.6em, baseline: -.2em, sym.square))
+
+)
