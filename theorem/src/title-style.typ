@@ -13,6 +13,7 @@
     e.field("align", alignment, default: start),
     e.field("sep-thickness", length, default: 1pt),
     e.field("boxed-style", e.types.option(dictionary), default: none),
+    e.field("inline", bool, default: false)
   )
 )
 

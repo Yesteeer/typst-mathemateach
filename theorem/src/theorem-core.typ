@@ -11,15 +11,17 @@
 
 #let resolve-title(title, counter, suffix) = {
   let final-title = title
-  if title != "" {final-title += " "}
-  if counter != none {
-    if text(title).func() == emph {final-title += emph((counter.display)())}
-    else if text(title).func() == strong {final-title += strong((counter.display)())}
-    else {final-title += (counter.display)()}
-    final-title += " "
-  }
-  final-title += suffix
-  return final-title
+  if title != none {
+    if title != "" {final-title += " "}
+    if counter != none {
+      if text(title).func() == emph {final-title += emph((counter.display)())}
+      else if text(title).func() == strong {final-title += strong((counter.display)())}
+      else {final-title += (counter.display)()}
+      final-title += " "
+    }
+    final-title += suffix
+    return final-title
+  } else {none}
 }
 
 #let resolve-shadow(actual-shadow, arg-shadow) = {
@@ -51,13 +53,31 @@
   }
 }
 
+#let resolve-body(prefix, body, suffix, counter, title, name, inline) = {
+  let start-content = []
+  let end-content = []
+  if inline {
+    prefix += resolve-title(title, counter, name)
+  }
+  if type(body) == array and body.len() > 1 {
+    start-content += prefix
+    start-content += body.first()
+    end-content += body.last()
+    end-content += suffix
+    return (start-content, ..body.slice(1, body.len()-1), end-content)
+  } else {
+    return (prefix + body.first() + suffix,)
+  }
+}
+
 #let theorem_ = e.element.declare(
   "theorem",
   prefix: "carex",
   
   display: it => e.get(get => {
+    let inline = get(title-style).inline
     let args = (
-      title: resolve-title(it.title, it.counter, it.name),
+      title: if inline {none} else {resolve-title(it.title, it.counter, it.name)},
       footer: it.footer,
       frame: get(frame) + it.frame,
       title-style: get(title-style) + it.title-style,
@@ -72,7 +92,7 @@
     ) + resolve-spacing(it.above, it.below)
     showybox.showybox(
       ..args,
-      ..it.body
+      ..resolve-body(get(body-style).prefix, it.body, get(body-style).suffix, it.counter, it.title, it.name, inline)
     )
   }),
 
@@ -82,7 +102,7 @@
     e.field("body", e.types.any, required: true),
     e.field("kind", str, default: "theorem"),
     e.field("counter", e.types.any, default: none),
-    e.field("title", e.types.union(str, content), default: ""),
+    e.field("title", e.types.union(none, str, content), default: none),
     e.field("name", e.types.union(str, content), default: ""),
     e.field("footer", e.types.union(str, content), default: ""),
     e.field("frame", e.types.option(dictionary), default: none),

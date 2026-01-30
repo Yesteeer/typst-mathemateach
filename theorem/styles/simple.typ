@@ -57,46 +57,51 @@
   }
   
   show: e.apply(
-
-    // styling applied to all environments
-    set-theorem(
-      counter: thm-counter,
-    ),
+    // GENERAL
     set-theorem-title-style(
-        color: black,
-        sep-thickness: 1pt
+      color: black,
+      sep-thickness: 0pt,
+      boxed-style: (:),
+      inline: true,
     ),
     set-theorem-frame(
-        title-color: white,
-        border-color: white,
-        footer-color: white,
-        body-inset: (x: 0em, y: 0.65em),
-        title-inset: (x: 0em, y: 0.15em),
+      title-color: white,
+      border-color: white,
+      footer-color: white,
+      body-inset: (x: 0em, y: 0.65em),
+      title-inset: (x: 0em, y: 0em),
+    ),
+
+    // THEOREM
+    set-theorem(theorem,
+      title: [*#get-theorem-title("theorem")*],
+      counter: thm-counter
     ),
     
-    // styling applied to example environment
+    // EXAMPLE
     set-theorem(example,
-      title: [_#get-theorem-title("example")_]
+      title: [_#get-theorem-title("example")_],
+      counter: thm-counter,
     ),
 
-    // styling applied to theorem environment
-    set-theorem(theorem,
-      title: [*#get-theorem-title("theorem")*]
-    ),
-
-    // styling applied to remark environment
+    // REMARK
     set-theorem(remark,
       title: [#get-theorem-title("remark")],
-      counter: none,
     ),
 
-    // styling applied to proof environment
-    set-theorem(proof,
-      counter: none,
+    set-theorem-title-style(remark,
+      boxed-style: none,
+      inline: false
     ),
 
+    // PROOF
     set-theorem-title-style(proof,
       weight: "regular"
+    ),
+
+    set-theorem-body-style(proof,
+      prefix: "Démonstration." + h(.4em),
+      suffix: h(1fr) + h(1.2em) + box(height: 0.65em, text(1.6em, baseline: -.2em, sym.square))
     ),
 
     set-theorem-frame(proof,
@@ -107,10 +112,3 @@
   )
   body
 }
-
-#let proof(..args, body) = theorem_(
-  ..args.named(),
-  kind: "proof",
-  [_#get-theorem-title("proof"):_] + h(1em) + body + h(1fr) + h(1.2em) + box(height: 0.65em, text(1.6em, baseline: -.2em, sym.square))
-
-)

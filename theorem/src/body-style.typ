@@ -10,6 +10,8 @@
     e.field("kind", str, default: "thm"),
     e.field("color", color, default: black),
     e.field("align", alignment, default: start),
+    e.field("prefix", content, default: []),
+    e.field("suffix", content, default: [])
   )
 )
 

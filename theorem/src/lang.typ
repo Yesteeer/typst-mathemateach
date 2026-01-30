@@ -55,7 +55,7 @@
     fr: "Axiome",
     de: "Axiom",
     en: "Axiom",
-  )
+  ),
 )
 
 #let get-theorem-title(kind) = (
