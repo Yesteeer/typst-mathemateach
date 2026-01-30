@@ -6,7 +6,7 @@
     de: "Satz",
     en: "Theorem"
   ),
-  lemmma: (
+  lemma: (
     fr: "Lemme",
     de: "Lemma",
     en: "Lemma"

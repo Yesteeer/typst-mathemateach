@@ -7,21 +7,23 @@
 #import "footer-style.typ": footer-style, set-theorem-footer-style
 #import "sep.typ": sep, set-theorem-sep
 #import "shadow.typ": shadow, set-theorem-shadow
-#import "lang.typ": get-theorem-title
+#import "../lang.typ": get-theorem-title
 
-#let resolve-title(title, counter, suffix) = {
-  let final-title = title
-  if title != none {
-    if title != "" {final-title += " "}
+#let resolve-title(title, counter, name) = {
+  if type(title) == function {
+    return title(counter, name)
+  } else {
+    let final-title = title
     if counter != none {
-      if text(title).func() == emph {final-title += emph((counter.display)())}
-      else if text(title).func() == strong {final-title += strong((counter.display)())}
-      else {final-title += (counter.display)()}
-      final-title += " "
+      final-title += h(.4em)
+      final-title += (counter.display)()
     }
-    final-title += suffix
+    if name != "" {
+      final-title += h(.4em)
+    final-title += name
+    }
     return final-title
-  } else {none}
+  }
 }
 
 #let resolve-shadow(actual-shadow, arg-shadow) = {
@@ -102,7 +104,7 @@
     e.field("body", e.types.any, required: true),
     e.field("kind", str, default: "theorem"),
     e.field("counter", e.types.any, default: none),
-    e.field("title", e.types.union(none, str, content), default: none),
+    e.field("title", e.types.union(none, str, content, function), default: none),
     e.field("name", e.types.union(str, content), default: ""),
     e.field("footer", e.types.union(str, content), default: ""),
     e.field("frame", e.types.option(dictionary), default: none),

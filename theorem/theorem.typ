@@ -1,1 +1,7 @@
 #import "styles/simple.typ"
+#import "styles/colorful-boxes.typ"
+#import "styles/colorless-boxes.typ"
+#import "styles/fancy-colorful-boxes.typ"
+#import "styles/fancy-colorless-boxes.typ"
+#import "styles/bar-colorful-boxes.typ"
+#import "styles/bar-colorless-boxes.typ"

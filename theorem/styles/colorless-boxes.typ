@@ -9,7 +9,11 @@
 #let show-theorem(body, counter-level: none) = {
 
   let build-title(kind) = (counter, name) => {
-    [_*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ (#name)]_]
+    [_*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ _(#name) _]_]
+  }
+
+  let build-simple-title(kind) = (counter, name) => {
+    [_#get-theorem-title(kind) #(counter.display)()#if name != "" [ _(#name) _]_]
   }
   
   // prepare call for elembic
@@ -39,21 +43,19 @@
     set-theorem-title-style(
       color: black,
       sep-thickness: 0pt,
-      boxed-style: (:),
-      inline: true,
     ),
     set-theorem-frame(
       title-color: white,
-      border-color: white,
-      body-inset: (x: 0em, y: 0.65em),
-      title-inset: (x: 0em, y: 0em),
-      footer-inset: (x: 0em, y: 0em),
+      border-color: black,
+      body-inset: (x: 0.65em, bottom: 1em, top: 0.3em),
+      title-inset: (x: 1.2em, top: 0.65em),
+      radius: 0pt
     ),
 
     // DEFINITION
     set-theorem(definition,
       title: build-title("definition"),
-      counter: thm-counter
+      counter: thm-counter,
     ),
 
     // LEMMA 
@@ -80,38 +82,53 @@
       counter: thm-counter
     ),
     
-    
     // EXAMPLE
     set-theorem(example,
-      title: [*#get-theorem-title("example")*],
+      title: build-simple-title("example"),
       counter: thm-counter,
     ),
-
-    
-    // REMARK
-    set-theorem(remark,
-      title: [_#get-theorem-title("remark")_],
-      counter: thm-counter
+    set-theorem-frame(example,
+      border-color: white,
+      body-inset: (x: 0em, y: 0.65em),
+      title-inset: (x: 0em, y: 0.65em),
     ),
 
+    // REMARK
+    set-theorem(remark,
+      title: build-simple-title("remark"),
+      counter: thm-counter
+    ),
+    set-theorem-frame(remark,
+      border-color: white,
+      body-inset: (x: 0em, y: 0.65em),
+      title-inset: (x: 0em, y: 0.65em),
+    ),
 
     // NOTATION
     set-theorem(notation, 
-      title: [_#get-theorem-title("notation")_],
+      title: build-simple-title("notation"),
       counter: thm-counter
+    ),
+    set-theorem-frame(notation,
+      border-color: white,
+      body-inset: (x: 0em, y: 0.65em),
+      title-inset: (x: 0em, y: 0.65em),
     ),
 
 
     // PROOF
     set-theorem(proof,
-      title: [_#get-theorem-title("proof")._],
+      title: [_#get-theorem-title("proof"):_],
       above: 0.4em
     ),
-
+    set-theorem-frame(proof,
+      border-color: white,
+      body-inset: (x: 0em, y: 0.65em),
+      title-inset: (x: 0em, y: 0.65em),
+    ),
     set-theorem-body-style(proof,
       suffix: h(1fr) + h(1.2em) + box(height: 0.65em, text(1.6em, baseline: -.2em, sym.square))
     ),
-
     set-theorem-frame(proof,
       body-inset: (x: 1em),
     ),

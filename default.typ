@@ -12,6 +12,7 @@
   // set default paragraphe justification
   set par(
     justify: true,
+    leading: .8em 
   )
   
   // set default math font
