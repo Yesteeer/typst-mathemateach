@@ -54,7 +54,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ```
 
-![image](./examples/box-colorful-test.png)
+![image](./theorem/examples/box-colorful-test.png)
 
 ### fancy-colorful theme
 ```typst
