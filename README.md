@@ -1,6 +1,6 @@
 # Mathemateach
 
-Mathemateach is a typst package (not yet published on the [Typst  universe](https://typst.app/universe/)) which contains tools for writing lecture notes for teaching mathematics. For now, it only contains highly customisable theorem boxes and comes along with four themes that can be used out of the box.
+Mathemateach is a typst package (not yet published on the [Typst  universe](https://typst.app/universe/)) which contains tools for writing lecture notes for teaching mathematics. For now, it only contains highly customisable theorem boxes and comes along with four themes that can be used out of the box. But there will be additional features soon (for example some custom CetZ elements).
 
 > [!NOTE]
 > As this package was primary build for personal use, there is currently no documentation. The code is also a bit messy (and not at all commented !)
@@ -38,7 +38,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ```
 
-![image](./examples/simple-test.png)
+![image](./theorem/examples/simple-test.png)
 
 ### box-colorful theme
 ```typst
@@ -70,7 +70,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ```
 
-![image](./examples/fancy-colorful-test.png)
+![image](./theorem/examples/fancy-colorful-test.png)
 
 ### bar-colorful theme
 ```typst
@@ -86,4 +86,4 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ```
 
-![image](./examples/bar-colorful-test.png)
+![image](./theorem/examples/bar-colorful-test.png)
