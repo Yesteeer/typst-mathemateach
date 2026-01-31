@@ -1,9 +1,10 @@
 #import "../../lib.typ": *
+#import "@preview/elembic:1.1.1" as e
 
 // import simple style
 #import theorem.bar-colorful: * 
 
-#set page(height: 12cm)
+#set page(height: auto)
 
 // *optional*: personal default settings (fonts, layout, etc.)
 #show: apply-default 
@@ -14,9 +15,12 @@
 // first chapter
 = Géométrie euclidienne
 
-// a simple definition
+// a definition
 #definition[ #lorem(20) ]
 
-// a simple theorem followed by its proof
+// an example
+#example[ #lorem(20) ]
+
+// a theorem followed by its proof
 #theorem(label: <thm1>, name: [Théorème de Pythagore])[ #lorem(30) ]
 #proof[ Ceci est une démonstration du @thm1. #lorem(30) ]

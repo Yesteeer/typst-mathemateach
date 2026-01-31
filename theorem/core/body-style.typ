@@ -23,7 +23,7 @@
 
 #let set-theorem-body-style(..rules) = it => {
   show: if rules.pos().len() == 0 {set-body-style(..rules.named())} else {
-    e.filtered(rules.pos().first(),
+    e.filtered(e.filters.or_(..rules.pos()),
       set-body-style(..rules.named())
     )
   }

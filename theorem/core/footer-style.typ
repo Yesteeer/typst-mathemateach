@@ -23,7 +23,7 @@
 
 #let set-theorem-footer-style(..rules) = it => {
   show: if rules.pos() == () {set-footer-style(..rules.named())} else {
-    e.filtered(rules.pos().first(),
+    e.filtered(e.filters.or_(..rules.pos()),
       set-footer-style(..rules.named())
     )
   }

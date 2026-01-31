@@ -153,7 +153,7 @@
 
 #let set-theorem(..rules) = it => {
   show: if rules.pos() == () {set-theorem_(..rules.named())} else {
-    e.cond-set(rules.pos().first(),
+    e.cond-set(e.filters.or_(..rules.pos()),
       ..rules.named()
     )
   }

@@ -30,7 +30,7 @@
 
 #let set-theorem-frame(..rules) = it => {
   show: if rules.pos() == () {set-frame(..rules.named())} else {
-    e.filtered(rules.pos().first(),
+    e.filtered(e.filters.or_(..rules.pos()),
       set-frame(..rules.named())
     )
   }

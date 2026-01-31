@@ -25,7 +25,7 @@
 
 #let set-theorem-title-style(..rules) = it => {
   show: if rules.pos() == () {set-title-style(..rules.named())} else {
-    e.filtered(rules.pos().first(),
+    e.filtered(e.filters.or_(..rules.pos()),
       set-title-style(..rules.named())
     )
   }

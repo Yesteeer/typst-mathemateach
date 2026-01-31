@@ -1,5 +1,5 @@
 #import "core/theorem-core.typ": (
-  theorem_,
+  theorem_ as generic-theorem,
   set-theorem,
   set-theorem-body-style,
   set-theorem-footer-style,
@@ -11,39 +11,39 @@
 
 // basic theorem block
 
-#let theorem = theorem_.with(
+#let theorem = generic-theorem.with(
   kind: "theorem",
 )
 
-#let example = theorem_.with(
+#let example = generic-theorem.with(
   kind: "exercise"
 )
 
-#let proposition = theorem_.with(
+#let proposition = generic-theorem.with(
   kind: "proposition"
 )
 
-#let lemma = theorem_.with(
+#let lemma = generic-theorem.with(
   kind: "lemma"
 )
 
-#let corollary = theorem_.with(
+#let corollary = generic-theorem.with(
   kind: "corollary"
 )
 
-#let definition = theorem_.with(
+#let definition = generic-theorem.with(
   kind: "definition"
 )
 
-#let remark = theorem_.with(
+#let remark = generic-theorem.with(
   kind: "remark"
 )
 
-#let proof = theorem_.with(
+#let proof = generic-theorem.with(
   kind: "proof"
 )
 
-#let notation = theorem_.with(
+#let notation = generic-theorem.with(
   kind: "notation"
 )
 

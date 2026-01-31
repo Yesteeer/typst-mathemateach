@@ -36,6 +36,9 @@
   
   show: e.apply(
     // GENERAL
+    set-theorem(
+      counter: thm-counter,
+    ),
     set-theorem-title-style(
       color: black,
       sep-thickness: 0pt,
@@ -53,59 +56,52 @@
     // DEFINITION
     set-theorem(definition,
       title: build-title("definition"),
-      counter: thm-counter
     ),
 
     // LEMMA 
     set-theorem(lemma,
       title: build-title("lemma"),
-      counter: thm-counter
     ),
 
     // PROPOSITION 
     set-theorem(proposition,
       title: build-title("proposition"),
-      counter: thm-counter
     ),
 
     // THEOREM
     set-theorem(theorem,
       title: build-title("theorem"),
-      counter: thm-counter
     ),
     
     // COROLLARY 
     set-theorem(corollary,
       title: build-title("corollary"),
-      counter: thm-counter
     ),
     
     
     // EXAMPLE
     set-theorem(example,
-      title: [*#get-theorem-title("example")*],
-      counter: thm-counter,
+      title: [_#get-theorem-title("example")_],
     ),
 
     
     // REMARK
     set-theorem(remark,
       title: [_#get-theorem-title("remark")_],
-      counter: thm-counter
     ),
 
 
     // NOTATION
     set-theorem(notation, 
       title: [_#get-theorem-title("notation")_],
-      counter: thm-counter
     ),
 
 
     // PROOF
     set-theorem(proof,
       title: [_#get-theorem-title("proof")._],
-      above: 0.4em
+      above: 0.4em,
+      counter: none,
     ),
 
     set-theorem-body-style(proof,

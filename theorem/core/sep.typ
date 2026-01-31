@@ -22,7 +22,7 @@
 
 #let set-theorem-sep(..rules) = it => {
   show: if rules.pos() == () {set-sep(..rules.named())} else {
-    e.filtered(rules.pos().first(),
+    e.filtered(e.filters.or_(..rules.pos()),
       set-sep(..rules.named())
     )
   }
