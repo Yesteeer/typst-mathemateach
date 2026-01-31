@@ -114,3 +114,39 @@ Simply download the package locally (as described on the [Typst Packages](https:
 ```
 
 ![image](./theorem/examples/bar-colorful-test.png)
+
+### tbar-colorful theme
+```typst
+#import "@local/mathemateach:0.1.0": *
+
+// import tbar-colorful style
+#import theorem.tbar-colorful: * 
+
+#set page(height: auto)
+
+#show: apply-default 
+#show: show-theorem.with(counter-level: 1)  
+
+[...]
+
+```
+
+![image](./theorem/examples/tbar-colorful-test.png)
+
+### smallbox-colorful theme
+```typst
+#import "@local/mathemateach:0.1.0": *
+
+// import smallbox-colorful style
+#import theorem.smallbox-colorful: * 
+
+#set page(height: auto)
+
+#show: apply-default 
+#show: show-theorem.with(counter-level: 1)  
+
+[...]
+
+```
+
+![image](./theorem/examples/smallbox-colorful-test.png)
