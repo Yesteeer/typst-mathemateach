@@ -18,7 +18,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // import simple style
 #import theorem.simple: * 
 
-#set page(height: 12cm)
+#set page(height: auto)
 
 // *optional*: personal default settings (fonts, layout, etc.)
 #show: apply-default 
@@ -47,6 +47,8 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // import box-colorful style
 #import theorem.box-colorful: * 
 
+#set page(height: auto)
+
 #show: apply-default 
 #show: show-theorem.with(counter-level: 1)  
 
@@ -63,6 +65,8 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // import fancy-colorful style
 #import theorem.fancy-colorful: * 
 
+#set page(height: auto)
+
 #show: apply-default 
 #show: show-theorem.with(counter-level: 1)  
 
@@ -78,6 +82,8 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 // import bar-colorful style
 #import theorem.bar-colorful: * 
+
+#set page(height: auto)
 
 #show: apply-default 
 #show: show-theorem.with(counter-level: 1)  

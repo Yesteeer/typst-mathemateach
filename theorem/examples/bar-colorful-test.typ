@@ -1,5 +1,4 @@
 #import "../../lib.typ": *
-#import "@preview/elembic:1.1.1" as e
 
 // import simple style
 #import theorem.bar-colorful: * 
