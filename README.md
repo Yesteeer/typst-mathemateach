@@ -20,23 +20,18 @@ French, German and English are supported and theorem titles depend on text langa
 Simply download the package locally (as described on the [Typst Packages](https://github.com/typst/packages)) repository. Then import and use mathemateach. 
 
 ### simple theme
-```typst
-#import "@local/mathemateach:0.1.0": *
-
 // import simple style
 #import theorem.simple: * 
 
 #set page(height: auto, margin: 1cm)
-
-// *optional*: personal default settings (fonts, layout, etc.)
-#show: apply-default 
+#set heading(numbering: "1.")
 
 // applies the imported style, with theorem counter based on level-1 headings
 #show: show-theorem.with(counter-level: 1)  
 
 = Géométrie euclidienne
 
-// a generic styled box
+// a content-only box (without title) with matching styling 
 #generic-theorem[generic content]
 
 #definition[ #lorem(20) ]
@@ -52,11 +47,8 @@ Simply download the package locally (as described on the [Typst Packages](https:
 #notation[ #lorem(20) ]
 
 // a theorem followed by its proof
-#theorem(label: <thm1>, name: [Théorème de Pythagore])[ #lorem(30) ]
-#proof[ Ceci est une démonstration du @thm1. #lorem(30) ]
-
-#corollary[ #lorem(20) ]
-
+#theorem(label: <thm1>, name: [Pythagorean Theorem])[ #lorem(30) ]
+#proof[ This is a proof of @thm1. ]
 ```
 
 ![image](./theorem/examples/simple-test.png)
@@ -68,9 +60,9 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // import box-colorful style
 #import theorem.box-colorful: * 
 
-#set page(height: auto)
+#set page(height: auto, margin: 1cm)
+#set heading(numbering: "1.")
 
-#show: apply-default 
 #show: show-theorem.with(counter-level: 1)  
 
 [...]
@@ -86,9 +78,9 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // import fancy-colorful style
 #import theorem.fancy-colorful: * 
 
-#set page(height: auto)
+#set page(height: auto, margin: 1cm)
+#set heading(numbering: "1.")
 
-#show: apply-default 
 #show: show-theorem.with(counter-level: 1)  
 
 [...]
@@ -104,9 +96,9 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // import bar-colorful style
 #import theorem.bar-colorful: * 
 
-#set page(height: auto)
+#set page(height: auto, margin: 1cm)
+#set heading(numbering: "1.")
 
-#show: apply-default 
 #show: show-theorem.with(counter-level: 1)  
 
 [...]
@@ -122,9 +114,9 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // import tbar-colorful style
 #import theorem.tbar-colorful: * 
 
-#set page(height: auto)
+#set page(height: auto, margin: 1cm)
+#set heading(numbering: "1.")
 
-#show: apply-default 
 #show: show-theorem.with(counter-level: 1)  
 
 [...]
@@ -140,9 +132,9 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // import smallbox-colorful style
 #import theorem.smallbox-colorful: * 
 
-#set page(height: auto)
+#set page(height: auto, margin: 1cm)
+#set heading(numbering: "1.")
 
-#show: apply-default 
 #show: show-theorem.with(counter-level: 1)  
 
 [...]

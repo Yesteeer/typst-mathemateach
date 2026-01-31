@@ -9,7 +9,11 @@
 #let show-theorem(body, counter-level: none) = {
 
   let build-title(kind) = (counter, name) => {
-    [_*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ (#name)]_]
+    [_*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ (#name)]_] + h(.4em)
+  }
+
+  let build-simple-title(kind) = (counter, name) => {
+    [_#get-theorem-title(kind) #(counter.display)()#if name != "" [ (#name)]_] + h(.4em)
   }
   
   // prepare call for elembic
@@ -82,28 +86,27 @@
       title: build-title("corollary"),
     ),
     
-    
     // EXAMPLE
     set-theorem(example,
-      title: [_#get-theorem-title("example")_],
+      title: build-simple-title("example"),
     ),
 
     
     // REMARK
     set-theorem(remark,
-      title: [_#get-theorem-title("remark")_],
+      title: build-simple-title("remark"),
     ),
 
 
     // NOTATION
     set-theorem(notation, 
-      title: [_#get-theorem-title("notation")_],
+      title: build-simple-title("notation"),
     ),
 
 
     // PROOF
     set-theorem(proof,
-      title: [_#get-theorem-title("proof")._],
+      title: [_#get-theorem-title("proof").#h(.4em)_],
       above: 0.4em,
     ),
 

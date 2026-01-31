@@ -13,7 +13,7 @@
     [*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ _(#name) _]]
   }
 
-   let build-simple-title(kind) = (counter, name) => {
+  let build-simple-title(kind) = (counter, name) => {
     [_#get-theorem-title(kind) #(counter.display)()#if name != "" [ _(#name) _]_]
   }
   
@@ -115,7 +115,7 @@
 
     // PROOF
     set-theorem(proof,
-      title: [_#get-theorem-title("proof"):_],
+      title: [_#get-theorem-title("proof").#h(.4em)_],
       above: 0.4em,
     ),
     set-theorem-frame(proof,

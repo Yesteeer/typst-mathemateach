@@ -1,20 +1,17 @@
 #import "../../lib.typ": *
-#import "@preview/showybox:2.0.4": showybox
 
-// import simple style
+// import tbar-colorful style
 #import theorem.tbar-colorful: * 
 
 #set page(height: auto, margin: 1cm)
-
-// *optional*: personal default settings (fonts, layout, etc.)
-#show: apply-default 
+#set heading(numbering: "1.")
 
 // applies the imported style, with theorem counter based on level-1 headings
 #show: show-theorem.with(counter-level: 1)  
 
 = Géométrie euclidienne
 
-// a generic styled box
+// a content-only box (without title) with matching styling 
 #generic-theorem[generic content]
 
 #definition[ #lorem(20) ]
@@ -30,5 +27,5 @@
 #notation[ #lorem(20) ]
 
 // a theorem followed by its proof
-#theorem(label: <thm1>, name: [Théorème de Pythagore])[ #lorem(30) ]
-#proof[ Ceci est une démonstration du @thm1. #lorem(30) ]
+#theorem(label: <thm1>, name: [Pythagorean Theorem])[ #lorem(30) ]
+#proof[ This is a proof of @thm1. ]

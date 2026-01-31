@@ -6,7 +6,6 @@
 #import "../lang.typ": get-theorem-title
 
 // show rule to apply style
-
 #let show-theorem(body, counter-level: none) = {
 
   let build-title(kind) = (counter, name) => {
@@ -129,7 +128,7 @@
 
     // PROOF
     set-theorem(proof,
-      title: [_#get-theorem-title("proof"):_],
+      title: [_#get-theorem-title("proof").#h(.4em)_],
       above: 0.4em,
     ),
     set-theorem-frame(proof,

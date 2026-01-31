@@ -116,6 +116,6 @@
         de: "Satz",
         en: "Theorem"
       )),
-    ).at(text.lang, default: "Theorem")
+    ).at(text.lang, default: "unknown thm name")
   }
 )
