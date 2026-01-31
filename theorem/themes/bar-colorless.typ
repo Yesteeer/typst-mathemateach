@@ -9,11 +9,11 @@
 #let show-theorem(body, counter-level: none) = {
 
   let build-title(kind) = (counter, name) => {
-    [*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ _(#name) _]]
+    [*#get-theorem-title(kind) #if counter-level != none {(counter.display)()}*#if name != "" [ _(#name) _]]
   }
 
    let build-simple-title(kind) = (counter, name) => {
-    [_#get-theorem-title(kind) #(counter.display)()#if name != "" [ _(#name) _]_]
+    [_#get-theorem-title(kind) #if counter-level != none {(counter.display)()}#if name != "" [ _(#name) _]_]
   }
   
   // prepare call for elembic
