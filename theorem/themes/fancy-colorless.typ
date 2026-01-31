@@ -16,13 +16,13 @@
           stroke: 0pt,
           fill: white,
           inset: (x: 0.6em, y: 0em),
-        )[*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ _(#name)_]]
+        )[*#get-theorem-title(kind) #if counter-level != none {(counter.display)()}*#if name != "" [ _(#name)_]]
       )
     ]
   }
 
   let build-simple-title(kind) = (counter, name) => {
-    [*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ _(#name)_]]
+    [*#get-theorem-title(kind) #if counter-level != none {(counter.display)()}*#if name != "" [ _(#name)_]]
   }
   
   // prepare call for elembic
