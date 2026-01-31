@@ -102,9 +102,9 @@
 
   fields: (
     e.field("body", e.types.any, required: true),
-    e.field("kind", str, default: "theorem"),
+    e.field("kind", str, default: "generic"),
     e.field("counter", e.types.any, default: none),
-    e.field("title", e.types.union(none, str, content, function), default: none),
+    e.field("title", e.types.union(str, content, function), default: ""),
     e.field("name", e.types.union(str, content), default: ""),
     e.field("footer", e.types.union(str, content), default: ""),
     e.field("frame", e.types.option(dictionary), default: none),

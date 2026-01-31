@@ -9,7 +9,7 @@ Mathemateach is a typst package (not yet published on the [Typst  universe](http
 Mathemateach is build on top of the [showybox](https://github.com/Pablo-Gonzalez-Calderon/showybox-package) package and also uses [rich-counters](https://github.com/jbirnick/typst-rich-counters) counters and [elembic](https://github.com/PgBiel/elembic) custom elements and set/show rules.
 
 ## Quickstart
-Simply download the package locally (as described on the [Typst Packages](https://github.com/typst/packages)) repository. Then import and use mathemateach
+Simply download the package locally (as described on the [Typst Packages](https://github.com/typst/packages)) repository. Then import and use mathemateach. 
 
 ### simple theme
 ```typst
@@ -18,7 +18,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // import simple style
 #import theorem.simple: * 
 
-#set page(height: auto)
+#set page(height: auto, margin: 1cm)
 
 // *optional*: personal default settings (fonts, layout, etc.)
 #show: apply-default 
@@ -26,15 +26,28 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // applies the imported style, with theorem counter based on level-1 headings
 #show: show-theorem.with(counter-level: 1)  
 
-// first chapter
 = Géométrie euclidienne
 
-// a simple definition
+// a generic styled box
+#generic-theorem[generic content]
+
 #definition[ #lorem(20) ]
 
-// a simple theorem followed by its proof
+#remark[ #lorem(20) ]
+
+#lemma[ #lorem(20) ]
+
+#example[ #lorem(20) ]
+
+#proposition[ #lorem(20) ]
+
+#notation[ #lorem(20) ]
+
+// a theorem followed by its proof
 #theorem(label: <thm1>, name: [Théorème de Pythagore])[ #lorem(30) ]
 #proof[ Ceci est une démonstration du @thm1. #lorem(30) ]
+
+#corollary[ #lorem(20) ]
 
 ```
 

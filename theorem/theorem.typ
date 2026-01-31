@@ -5,3 +5,7 @@
 #import "themes/fancy-colorless.typ"
 #import "themes/bar-colorful.typ"
 #import "themes/bar-colorless.typ"
+#import "themes/tbar-colorless.typ"
+#import "themes/tbar-colorful.typ"
+#import "themes/smallbox-colorful.typ"
+#import "themes/smallbox-colorless.typ"

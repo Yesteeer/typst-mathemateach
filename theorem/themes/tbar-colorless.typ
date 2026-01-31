@@ -32,7 +32,7 @@
   }
 
   show: e.apply(
-    
+
     // applied to all custom theorems
     set-theorem(
       definition, lemma, proposition, theorem, corollary, example, notation, remark,
@@ -47,10 +47,16 @@
       definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
       title-color: white,
       border-color: black,
-      body-inset: (x: 0.65em, bottom: 1em, top: 0.3em),
-      title-inset: (x: 1.2em, top: 0.65em),
-      thickness: (left: 2pt, rest: 0pt),
+      body-inset: (x: 0.65em, y: .65em),
+      title-inset: (x: .65em, top: 0.65em),
+      thickness: (left: 1pt),
       radius: 0pt
+    ),
+
+    // box style of: definition, lemma, proposition, theorem, corollary
+    set-theorem-frame(
+      definition, lemma, proposition, theorem, corollary,
+      title-color: gradient.linear(luma(200), white),
     ),
 
     // box style of: example, remark, notation, proof
@@ -58,67 +64,38 @@
       example, remark, notation, proof,
       border-color: white,
       body-inset: (x: 0em, y: 0.65em),
-      title-inset: (x: 0em, y: 0.65em),
+      title-inset: (x: 0em, y: 0.3em),
     ),
 
     // GENERIC
     set-theorem-frame(generic,
-      body-inset: (x: 0.65em, bottom: .65em, top: .65em),
-      body-color: luma(230),
-      title-color: luma(230)
+      body-color: gradient.linear(luma(200), white),
     ),
 
     // DEFINITION
     set-theorem(definition,
       title: build-title("definition"),
     ),
-    set-theorem-frame(definition,
-      body-color: colorful-cyan.lighten(80%),
-      title-color: colorful-cyan.lighten(80%),
-      border-color: colorful-cyan.darken(20%)
-    ),
 
     // LEMMA 
     set-theorem(lemma,
       title: build-title("lemma"),
-    ),
-    set-theorem-frame(lemma,
-      body-color: sand-beige.lighten(80%),
-      title-color: sand-beige.lighten(80%),
-      border-color: sand-beige.darken(20%)
     ),
 
     // PROPOSITION 
     set-theorem(proposition,
       title: build-title("proposition"),
     ),
-    set-theorem-frame(proposition,
-      body-color: colorful-bordeau.lighten(80%),
-      title-color: colorful-bordeau.lighten(80%),
-      border-color: colorful-bordeau.darken(20%)
-    ),
 
     // THEOREM
     set-theorem(theorem,
       title: build-title("theorem"),
     ),
-    set-theorem-frame(theorem,
-      body-color: apple-green.lighten(80%),
-      title-color: apple-green.lighten(80%),
-      border-color: apple-green.darken(20%)
-    ),
-
-    
+  
     // COROLLARY 
     set-theorem(corollary,
       title: build-title("corollary"),
     ),
-    set-theorem-frame(corollary,
-      body-color: colorful-purple.lighten(80%),
-      title-color: colorful-purple.lighten(80%),
-      border-color: colorful-purple.darken(20%)
-    ),
-
     
     // EXAMPLE
     set-theorem(example,
@@ -143,11 +120,14 @@
     ),
     set-theorem-frame(proof,
       border-color: white,
-      body-inset: (x: 1em, y: 0.65em),
-      title-inset: (y: 0.65em),
+      body-inset: (x: .65em, y: 0.65em),
+      title-inset: (x: .65em, y: 0.3em),
     ),
     set-theorem-body-style(proof,
       suffix: h(1fr) + h(1.2em) + box(height: 0.65em, text(1.6em, baseline: -.2em, sym.square))
+    ),
+    set-theorem-title-style(proof,
+      inline: true
     ),
     
   )

@@ -7,8 +7,8 @@
   display: it => it,
 
   fields: (
-    e.field("kind", str, default: "thm"),
-    e.field("color", color, default: white),
+    e.field("kind", str, default: "generic"),
+    e.field("color", e.types.union(color, gradient), default: white),
     e.field("weight", e.types.union(int, str), default: "regular"),
     e.field("align", alignment, default: start),
     e.field("sep-thickness", length, default: 1pt),

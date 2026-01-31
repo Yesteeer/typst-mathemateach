@@ -11,6 +11,10 @@
 
 // basic theorem block
 
+#let generic = generic-theorem.with(
+  kind: "generic"
+)
+
 #let theorem = generic-theorem.with(
   kind: "theorem",
 )

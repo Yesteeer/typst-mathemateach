@@ -7,11 +7,11 @@
   display: it => it,
 
   fields: (
-    e.field("kind", str, default: "thm"),
-    e.field("title-color", color, default: black),
-    e.field("body-color", color, default: white),
-    e.field("footer-color", color, default: luma(220)),
-    e.field("border-color", color, default: black),
+    e.field("kind", str, default: "generic"),
+    e.field("title-color", e.types.union(color, gradient), default: black),
+    e.field("body-color", e.types.union(color, gradient), default: white),
+    e.field("footer-color", e.types.union(color, gradient), default: luma(220)),
+    e.field("border-color", e.types.union(color, gradient), default: black),
     e.field("radius", e.types.union(relative, dictionary), default: 5pt),
     e.field("thickness", e.types.union(length, dictionary), default: 1pt),
     e.field("dash", str, default: "solid"),

@@ -40,15 +40,19 @@
   }
   
   show: e.apply(
-    // GENERAL
+    
+    // applied to all custom theorems
     set-theorem(
+      definition, lemma, proposition, theorem, corollary, example, notation, remark,
       counter: thm-counter,
     ),
     set-theorem-title-style(
+      definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
       color: black,
       sep-thickness: 0pt,
     ),
     set-theorem-frame(
+      definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
       title-color: white,
       radius: 0pt,
       thickness: 1.5pt,
@@ -118,7 +122,6 @@
     set-theorem(proof,
       title: [_#get-theorem-title("proof"):_],
       above: 0.4em,
-      counter: none,
     ),
     set-theorem-frame(proof,
       body-inset: (x: 1em, y: 0.3em),

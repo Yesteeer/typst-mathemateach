@@ -31,18 +31,22 @@
   }
   
   show: e.apply(
-    // GENERAL
+    
+    // applied to all custom theorems
     set-theorem(
+      definition, lemma, proposition, theorem, corollary, example, notation, remark,
       counter: thm-counter,
     ),
     set-theorem-title-style(
+      definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
       color: black,
       sep-thickness: 0pt,
     ),
     set-theorem-frame(
+      definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
       title-color: white,
       border-color: black,
-      radius: 0pt
+      radius: 5pt
     ),
 
     // box style of: definition, lemma, proposition, theorem and corollary
@@ -62,6 +66,11 @@
       border-color: white,
       body-inset: (x: 0em, y: 0.65em),
       title-inset: (x: 0em, y: 0.3em),
+    ),
+
+    // GENERIC
+    set-theorem-frame(generic,
+      body-inset: (x: 0.65em, bottom: .65em, top: .65em),
     ),
     
     // DEFINITION
@@ -109,7 +118,6 @@
     set-theorem(proof,
       title: [_#get-theorem-title("proof"):_],
       above: 0.4em,
-      counter: none,
     ),
     set-theorem-frame(proof,
       body-inset: (x: 1em, y: 0.3em),

@@ -7,8 +7,8 @@
   display: it => it,
 
   fields: (
-    e.field("kind", str, default: "thm"),
-    e.field("color", e.types.option(color), default: none),
+    e.field("kind", str, default: "generic"),
+    e.field("color", e.types.union(none, color, gradient), default: none),
     e.field("offset", e.types.union(none, relative, dictionary), default: none),
   )
 )

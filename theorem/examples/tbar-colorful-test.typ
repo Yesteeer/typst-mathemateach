@@ -1,7 +1,8 @@
 #import "../../lib.typ": *
+#import "@preview/showybox:2.0.4": showybox
 
 // import simple style
-#import theorem.box-colorful: * 
+#import theorem.tbar-colorful: * 
 
 #set page(height: auto, margin: 1cm)
 
