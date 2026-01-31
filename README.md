@@ -20,6 +20,7 @@ French, German and English are supported and theorem titles depend on text langa
 Simply download the package locally (as described on the [Typst Packages](https://github.com/typst/packages)) repository. Then import and use mathemateach. 
 
 ### simple theme
+```typst
 // import simple style
 #import theorem.simple: * 
 
