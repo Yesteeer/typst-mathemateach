@@ -8,6 +8,14 @@ Mathemateach is a typst package (not yet published on the [Typst  universe](http
 ## Dependencies
 Mathemateach is build on top of the [showybox](https://github.com/Pablo-Gonzalez-Calderon/showybox-package) package and also uses [rich-counters](https://github.com/jbirnick/typst-rich-counters) counters and [elembic](https://github.com/PgBiel/elembic) custom elements and set/show rules.
 
+## Supported langages
+
+French, German and English are supported and theorem titles depend on text langage. Can be changed by using the usual set rule:
+
+```typst
+#set text(lang: "en")
+```
+
 ## Quickstart
 Simply download the package locally (as described on the [Typst Packages](https://github.com/typst/packages)) repository. Then import and use mathemateach. 
 

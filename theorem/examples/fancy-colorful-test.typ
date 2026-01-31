@@ -1,7 +1,7 @@
 #import "../../lib.typ": *
 
 // import simple style
-#import theorem.fancy-colorless: * 
+#import theorem.fancy-colorful: * 
 
 #set page(height: auto, margin: 1cm)
 
