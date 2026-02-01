@@ -5,11 +5,11 @@
 #import "../title.typ": get-theorem-title
 
 #let build-title(kind) = (counter, name) => {
-  [_*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ (#name)]_] + h(.4em)
+  [_*#get-theorem-title(kind) #if counter != none [#(counter.display)()]*#if name != "" [ (#name)]_] + h(.4em)
 }
 
 #let build-simple-title(kind) = (counter, name) => {
-  [#get-theorem-title(kind) #(counter.display)()#if name != "" [ (#name)]] + h(.4em)
+  [#get-theorem-title(kind) #if counter != none [#(counter.display)()]#if name != "" [ (#name)]] + h(.4em)
 }
 
 // show rule to apply style
