@@ -1,4 +1,5 @@
 #import "@preview/elembic:1.1.1" as e
+#import "../template.typ": show-template
 #import "../core.typ": (
   question_ as generic-question, 
   question, 
@@ -14,7 +15,8 @@
   build-title,
 )
 
-#let show-exam(body) = {
+#let show-exam(body, ..args) = {
+  show: show-template.with(..args.named())
   show: e.apply(
 
     // BOTH
