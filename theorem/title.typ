@@ -111,11 +111,16 @@
 #let get-theorem-title(kind) = (
   context{
     return theorem-lexicon.at(kind, default: (
-      theorem: (
-        fr: "Théorème",
-        de: "Satz",
-        en: "Theorem"
-      )),
-    ).at(text.lang, default: "unknown thm name")
+      kind: kind),
+    ).at(text.lang, default: kind)
   }
 )
+
+#let build-title(kind) = (counter, name) => {
+  [*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ _(#name) _]]
+}
+
+#let build-simple-title(kind) = (counter, name) => {
+  [_#get-theorem-title(kind) #(counter.display)()#if name != "" [ _(#name) _]_]
+}
+

@@ -3,30 +3,29 @@
 
 #import "../models.typ": *
 #import "../colors.typ": *
-#import "../lang.typ": get-theorem-title
+#import "../title.typ": get-theorem-title
+
+#let build-title(kind) = (counter, name) => {
+  [
+    #place(
+      dy: -.65em,
+      rect(
+        stroke: 0pt,
+        fill: white,
+        inset: (x: 0.6em, y: 0em),
+      )[*#get-theorem-title(kind) #if counter != none [#(counter.display)()]*#if name != "" [ _(#name)_]]
+    )
+  ]
+}
+
+#let build-simple-title(kind) = (counter, name) => {
+  [*#get-theorem-title(kind) #if counter!= none [#(counter.display)()]*#if name != "" [ _(#name)_]]
+}
 
 // show rule to apply style
 
 #let show-theorem(body, counter-level: none) = {
 
-  let build-title(kind, color: black, fill: white) = (counter, name) => {
-    [
-      #place(
-        dy: -1.2em,
-        rect(
-          stroke: 1pt + color,
-          fill: fill,
-          inset: (x: 0.6em, y: 0.5em),
-          radius: 5pt,
-        )[*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ _(#name)_]]
-      )
-    ]
-  }
-
-  let build-simple-title(kind) = (counter, name) => {
-    [*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ _(#name)_]]
-  }
-  
   // prepare call for elembic
   show: e.prepare()
 
@@ -45,7 +44,7 @@
     
     // applied to all custom theorems
     set-theorem(
-      definition, lemma, proposition, theorem, corollary, example, notation, remark,
+      definition, lemma, proposition, theorem, corollary, example, notation, remark, generic,
       counter: thm-counter
     ),
     set-theorem-title-style(
@@ -54,21 +53,21 @@
       sep-thickness: 0pt,
     ),
     set-theorem-frame(
-      definition, lemma, proposition, theorem, corollary, example, notation, remark, proof,
+      definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
       title-color: white,
       radius: 0pt,
-      thickness: 0pt,
+      thickness: 1.5pt,
     ),
     
     // box style of: definition, lemma, proposition, theorem and corollary
     set-theorem(
-      definition, lemma, proposition, theorem, corollary,
-      above: 2em,
+      definition, lemma, proposition, theorem, corollary, generic,
+      above: 1.3em,
     ),
     set-theorem-frame(
-      definition, lemma, proposition, theorem, corollary,
-      body-inset: (x: 0em, bottom: 1em, top: 1em),
-      title-inset: (x: 0em, y: .2em),
+      definition, lemma, proposition, theorem, corollary, generic,
+      body-inset: (x: 1em, bottom: 1em, top: .7em),
+      title-inset: (x: 1em, y: .2em),
     ),
 
     // box style of: example, remark, notation and proof
@@ -78,36 +77,60 @@
       body-inset: (x: 0em, y: 0.65em),
       title-inset: (x: 0em, y: 0.3em),
     ),
-
-     // GENERIC
-    set-theorem-frame(generic,
-        border-color: black,
-        body-color: luma(230),
-        body-inset: (x: .65em, bottom: .65em, top: .5em),
-    ),
     
     // DEFINITION
     set-theorem(definition,
-      title: build-title("definition", fill: luma(230)),
+      title: build-title("definition"),
+    ),
+    set-theorem-frame(definition,
+      border-color: colorful-cyan.darken(10%),
+    ),
+    set-theorem-title-style(definition,
+      color: colorful-cyan.darken(10%),
     ),
     
     // LEMMA 
     set-theorem(lemma,
-      title: build-title("lemma", fill: luma(230)),
+      title: build-title("lemma"),
     ),
+    set-theorem-frame(lemma,
+      border-color: sand-beige,
+    ),
+    set-theorem-title-style(lemma,
+      color: sand-beige,
+    ),
+
     // PROPOSITION 
     set-theorem(proposition,
-      title: build-title("proposition", fill: luma(230)),
+      title: build-title("proposition"),
+    ),
+    set-theorem-frame(proposition,
+      border-color: colorful-bordeau,
+    ),
+    set-theorem-title-style(proposition,
+      color: colorful-bordeau,
     ),
 
     // THEOREM
     set-theorem(theorem,
-      title: build-title("theorem", fill: luma(230)),
+      title: build-title("theorem"),
+    ),
+    set-theorem-frame(theorem,
+      border-color: apple-green.darken(10%),
+    ),
+    set-theorem-title-style(theorem,
+      color: apple-green.darken(10%),
     ),
     
     // COROLLARY 
     set-theorem(corollary,
-      title: build-title("corollary", fill: luma(230)),
+      title: build-title("corollary"),
+    ),
+    set-theorem-frame(corollary,
+      border-color: colorful-purple,
+    ),
+    set-theorem-title-style(corollary,
+      color: colorful-purple,
     ),
     
     // EXAMPLE

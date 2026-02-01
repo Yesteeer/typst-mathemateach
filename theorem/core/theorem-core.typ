@@ -7,7 +7,7 @@
 #import "footer-style.typ": footer-style, set-theorem-footer-style
 #import "sep.typ": sep, set-theorem-sep
 #import "shadow.typ": shadow, set-theorem-shadow
-#import "../lang.typ": get-theorem-title
+#import "../title.typ": get-theorem-title
 
 #let resolve-title(title, counter, name) = {
   if type(title) == function {

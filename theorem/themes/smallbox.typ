@@ -2,18 +2,29 @@
 #import "@preview/elembic:1.1.1" as e
 
 #import "../models.typ": *
-#import "../lang.typ": get-theorem-title
+#import "../colors.typ": *
+#import "../title.typ": get-theorem-title
 
 // show rule to apply style
 
 #let show-theorem(body, counter-level: none) = {
 
-  let build-title(kind) = (counter, name) => {
-    [*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ _(#name) _]]
+  let build-title(kind, color: black, fill: white) = (counter, name) => {
+    [
+      #place(
+        dy: -1.2em,
+        rect(
+          stroke: 1pt + color,
+          fill: fill,
+          inset: (x: 0.6em, y: 0.5em),
+          radius: 5pt,
+        )[*#get-theorem-title(kind) #if counter != none [#(counter.display)()]*#if name != "" [ _(#name)_]]
+      )
+    ]
   }
 
   let build-simple-title(kind) = (counter, name) => {
-    [_#get-theorem-title(kind) #(counter.display)()#if name != "" [ _(#name) _]_]
+    [*#get-theorem-title(kind) #if counter != none [#(counter.display)()]*#if name != "" [ _(#name)_]]
   }
   
   // prepare call for elembic
@@ -34,8 +45,8 @@
     
     // applied to all custom theorems
     set-theorem(
-      definition, lemma, proposition, theorem, corollary, example, notation, remark,
-      counter: thm-counter,
+      definition, lemma, proposition, theorem, corollary, example, notation, remark, generic,
+      counter: thm-counter
     ),
     set-theorem-title-style(
       definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
@@ -43,21 +54,21 @@
       sep-thickness: 0pt,
     ),
     set-theorem-frame(
-      definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
+      definition, lemma, proposition, theorem, corollary, example, notation, remark, proof,
       title-color: white,
-      border-color: black,
-      radius: 5pt
+      radius: 0pt,
+      thickness: 0pt,
     ),
-
+    
     // box style of: definition, lemma, proposition, theorem and corollary
     set-theorem(
-      definition, lemma, proposition, theorem, corollary,
-      above: 1.3em,
+      definition, lemma, proposition, theorem, corollary, generic,
+      above: 2em,
     ),
     set-theorem-frame(
-      definition, lemma, proposition, theorem, corollary,
-      body-inset: (x: 0.65em, bottom: 1em, top: 0.3em),
-      title-inset: (x: 1.2em, top: 0.65em),
+      definition, lemma, proposition, theorem, corollary, generic,
+      body-inset: (x: 0em, bottom: 1em, top: 1em),
+      title-inset: (x: 0em, y: .2em),
     ),
 
     // box style of: example, remark, notation and proof
@@ -70,32 +81,48 @@
 
     // GENERIC
     set-theorem-frame(generic,
-      body-inset: (x: 0.65em, bottom: .65em, top: .65em),
+        border-color: black,
+        body-color: luma(230),
+        body-inset: (x: .65em, bottom: .65em, top: .5em),
     ),
     
     // DEFINITION
     set-theorem(definition,
-      title: build-title("definition"),
+      title: build-title("definition", 
+        color: colorful-cyan.darken(10%),
+        fill: colorful-cyan.lighten(80%),
+      ),
     ),
-
+    
     // LEMMA 
     set-theorem(lemma,
-      title: build-title("lemma"),
+      title: build-title("lemma", 
+        color: sand-beige.darken(20%), 
+        fill: sand-beige.lighten(80%),
+      ),
     ),
-
     // PROPOSITION 
     set-theorem(proposition,
-      title: build-title("proposition"),
+      title: build-title("proposition", 
+        color: colorful-bordeau.darken(10%), 
+        fill: colorful-bordeau.lighten(80%),
+      ),
     ),
 
     // THEOREM
     set-theorem(theorem,
-      title: build-title("theorem"),
+      title: build-title("theorem", 
+        color: apple-green.darken(20%), 
+        fill: apple-green.lighten(80%),
+      ),
     ),
     
     // COROLLARY 
     set-theorem(corollary,
-      title: build-title("corollary"),
+      title: build-title("corollary", 
+        color: colorful-purple.darken(10%), 
+        fill: colorful-purple.lighten(85%),
+      ),
     ),
     
     // EXAMPLE
@@ -113,7 +140,6 @@
       title: build-simple-title("notation"),
     ),
 
-
     // PROOF
     set-theorem(proof,
       title: [_#get-theorem-title("proof"):_],
@@ -126,7 +152,6 @@
     set-theorem-body-style(proof,
       suffix: h(1fr) + h(1.2em) + box(height: 0.65em, text(1.6em, baseline: -.2em, sym.square))
     ),
-    
   )
   body
 }

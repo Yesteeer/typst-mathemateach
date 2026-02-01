@@ -3,19 +3,11 @@
 
 #import "../models.typ": *
 #import "../colors.typ": *
-#import "../lang.typ": get-theorem-title
+#import "../title.typ": get-theorem-title, build-title, build-simple-title
 
 // show rule to apply style
 
 #let show-theorem(body, counter-level: none) = {
-
-  let build-title(kind) = (counter, name) => {
-    [*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ _(#name) _]]
-  }
-
-   let build-simple-title(kind) = (counter, name) => {
-    [_#get-theorem-title(kind) #(counter.display)()#if name != "" [ _(#name) _]_]
-  }
   
   // prepare call for elembic
   show: e.prepare()
@@ -35,7 +27,7 @@
     
     // applied to all custom theorems
     set-theorem(
-      definition, lemma, proposition, theorem, corollary, example, notation, remark,
+      definition, lemma, proposition, theorem, corollary, example, notation, remark, generic,
       counter: thm-counter,
     ),
     set-theorem-title-style(
@@ -63,7 +55,6 @@
 
     // GENERIC
     set-theorem-frame(generic,
-      body-inset: (x: 0.65em, bottom: .65em, top: .65em),
       body-color: luma(230),
       title-color: luma(230)
     ),

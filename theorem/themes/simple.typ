@@ -2,20 +2,20 @@
 #import "@preview/elembic:1.1.1" as e
 
 #import "../models.typ": *
-#import "../lang.typ": get-theorem-title
+#import "../title.typ": get-theorem-title
+
+#let build-title(kind) = (counter, name) => {
+  [_*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ (#name)]_] + h(.4em)
+}
+
+#let build-simple-title(kind) = (counter, name) => {
+  [#get-theorem-title(kind) #(counter.display)()#if name != "" [ (#name)]] + h(.4em)
+}
 
 // show rule to apply style
 
 #let show-theorem(body, counter-level: none) = {
 
-  let build-title(kind) = (counter, name) => {
-    [_*#get-theorem-title(kind) #(counter.display)()*#if name != "" [ (#name)]_] + h(.4em)
-  }
-
-  let build-simple-title(kind) = (counter, name) => {
-    [_#get-theorem-title(kind) #(counter.display)()#if name != "" [ (#name)]_] + h(.4em)
-  }
-  
   // prepare call for elembic
   show: e.prepare()
 
@@ -42,7 +42,7 @@
     
     // applied to all custom theorems
     set-theorem(
-      definition, lemma, proposition, theorem, corollary, example, notation, remark,
+      definition, lemma, proposition, theorem, corollary, example, notation, remark, generic,
       counter: thm-counter,
     ),
     set-theorem-title-style(

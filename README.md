@@ -10,7 +10,7 @@ Mathemateach is build on top of the [showybox](https://github.com/Pablo-Gonzalez
 
 ## Supported langages
 
-French, German and English are supported and theorem titles depend on text langage. Can be changed by using the usual set rule:
+French, German and English are supported and theorem titles depend on text langage (default to english). Can be changed by using the usual set rule:
 
 ```typst
 #set text(lang: "en")
@@ -32,8 +32,8 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 = Géométrie euclidienne
 
-// a content-only box (without title) with matching styling 
-#generic-theorem[generic content]
+// a generic customisable box with matching styling (use (counter, name) => [] for custom title)
+#generic(title: (counter, name) => [*Formula*], counter: none)[This is an important formula.]
 
 #definition[ #lorem(20) ]
 
@@ -58,8 +58,8 @@ Simply download the package locally (as described on the [Typst Packages](https:
 ```typst
 #import "@local/mathemateach:0.1.0": *
 
-// import box-colorful style
-#import theorem.box-colorful: * 
+// import box style
+#import theorem.box: * 
 
 #set page(height: auto, margin: 1cm)
 #set heading(numbering: "1.")
@@ -70,14 +70,14 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ```
 
-![image](./theorem/examples/box-colorful-test.png)
+![image](./theorem/examples/box-test.png)
 
 ### fancy-colorful theme
 ```typst
 #import "@local/mathemateach:0.1.0": *
 
-// import fancy-colorful style
-#import theorem.fancy-colorful: * 
+// import fancy style
+#import theorem.fancy: * 
 
 #set page(height: auto, margin: 1cm)
 #set heading(numbering: "1.")
@@ -88,14 +88,14 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ```
 
-![image](./theorem/examples/fancy-colorful-test.png)
+![image](./theorem/examples/fancy-test.png)
 
 ### bar-colorful theme
 ```typst
 #import "@local/mathemateach:0.1.0": *
 
-// import bar-colorful style
-#import theorem.bar-colorful: * 
+// import bar style
+#import theorem.bar: * 
 
 #set page(height: auto, margin: 1cm)
 #set heading(numbering: "1.")
@@ -106,14 +106,14 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ```
 
-![image](./theorem/examples/bar-colorful-test.png)
+![image](./theorem/examples/bar-test.png)
 
 ### tbar-colorful theme
 ```typst
 #import "@local/mathemateach:0.1.0": *
 
-// import tbar-colorful style
-#import theorem.tbar-colorful: * 
+// import tbar style
+#import theorem.tbar: * 
 
 #set page(height: auto, margin: 1cm)
 #set heading(numbering: "1.")
@@ -124,14 +124,14 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ```
 
-![image](./theorem/examples/tbar-colorful-test.png)
+![image](./theorem/examples/tbar-test.png)
 
 ### smallbox-colorful theme
 ```typst
 #import "@local/mathemateach:0.1.0": *
 
-// import smallbox-colorful style
-#import theorem.smallbox-colorful: * 
+// import smallbox style
+#import theorem.smallbox: * 
 
 #set page(height: auto, margin: 1cm)
 #set heading(numbering: "1.")
@@ -142,4 +142,4 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ```
 
-![image](./theorem/examples/smallbox-colorful-test.png)
+![image](./theorem/examples/smallbox-test.png)

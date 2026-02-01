@@ -1,7 +1,7 @@
 #import "../../lib.typ": *
 
-// import bar-colorful style
-#import theorem.bar-colorful: * 
+// import box style
+#import theorem.box: * 
 
 #set page(height: auto, margin: 1cm)
 #set heading(numbering: "1.")
@@ -11,8 +11,8 @@
 
 = Géométrie euclidienne
 
-// a content-only box (without title) with matching styling 
-#generic-theorem[generic content]
+// a generic customisable box with matching styling (use (counter, name) => [] for custom title)
+#generic-theorem(title: (counter, name) => [*Formula*], counter: none)[This is an important formula.]
 
 #definition[ #lorem(20) ]
 
