@@ -40,9 +40,9 @@
 
 // build question title
 #let build-title(kind) = (counter, name) => {
-  [*#get-exam-transl(kind) #(counter.display)()* #h(1fr) #context{
-    let exercise-number = (counter.get)().first() - 1
-    let exercise-points = exam-exercise-points.final().at(str(exercise-number), default: 0)
+  [*#get-exam-transl(kind) #if counter != none [#(counter.display)()]* #h(1fr) #context{
+    let exercise-number = if counter != none {(counter.get)().first() - 1}
+    let exercise-points = if exercise-number != none {exam-exercise-points.final().at(str(exercise-number), default: 0)}
     [#h(1fr)*#sym.slash* #if exercise-points != 0 [*#exercise-points*] else [#hide("0.0")]]
   }]
 }

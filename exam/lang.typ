@@ -15,6 +15,6 @@
 
 #let get-exam-transl(kind) = (
   context{
-    return exam-lexicon.at(kind, default: ("": "")).at(text.lang, default: "unknown name")
+    return exam-lexicon.at(kind, default: (kind: kind)).at(text.lang, default: kind)
   }
 )

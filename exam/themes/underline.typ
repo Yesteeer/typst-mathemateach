@@ -1,8 +1,8 @@
 #import "@preview/elembic:1.1.1" as e
 #import "../core.typ": (
-  question_, 
+  question_ as generic-question, 
   question, 
-  subquestion_, 
+  subquestion_ as generic-subquestion, 
   subquestion, 
   set-theorem, 
   set-theorem-frame, 
@@ -11,6 +11,7 @@
   set-theorem-body-style,
   set-theorem-sep,
   set-theorem-shadow,
+  build-title,
 )
 
 #let show-exam(body) = {
@@ -18,15 +19,15 @@
 
     // BOTH
     set-theorem-title-style(
-      question_, subquestion_,
+      generic-question, generic-subquestion,
       color: black,
     ),
     set-theorem-footer-style(
-      question_, subquestion_,
+      generic-question, generic-subquestion,
       sep-thickness: 0pt,
     ),
     set-theorem-frame(
-      question_, subquestion_,
+      generic-question, generic-subquestion,
       title-color: white,
       border-color: black,
       footer-color: white,
@@ -38,22 +39,22 @@
 
     // QUESTION
     set-theorem-frame(
-      question_,
+      generic-question,
       title-inset: (x: 0em, y: 0.65em),
       body-inset: (x: 0em, y: .8em),
     ),
     set-theorem-title-style(
-      question_,
+      generic-question,
       sep-thickness: 1pt,
     ),
 
     // SUBQUESTION
     set-theorem(
-      subquestion_,
+      generic-subquestion,
       title: none,
     ),
     set-theorem-title-style(
-      subquestion_,
+      generic-subquestion,
       inline: true,
       sep-thickness: 0pt,
     ),
