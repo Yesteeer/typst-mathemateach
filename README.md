@@ -33,7 +33,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 = Géométrie euclidienne
 
 // a generic customisable box with matching styling (use (counter, name) => [] for custom title)
-#generic(title: (counter, name) => [*Formula*], counter: none)[This is an important formula.]
+#generic(title: build-title("Formula"), counter: none)[This is an important formula.]
 
 #definition[ #lorem(20) ]
 
