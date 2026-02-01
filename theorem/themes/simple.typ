@@ -32,7 +32,7 @@
 
   // show theorem body text as italic
   show: e.show_(e.filters.or_(
-    theorem, lemma, definition, corollary, proposition
+    theorem, lemma, definition, corollary, proposition, generic,
   ), it => {
     set text(style: "italic")
     it
