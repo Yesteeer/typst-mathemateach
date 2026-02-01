@@ -5,27 +5,29 @@
 #import "../colors.typ": *
 #import "../title.typ": get-theorem-title
 
+
+#let build-title(kind, color: black, fill: white) = (counter, name) => {
+  [
+    #place(
+      dy: -1.2em,
+      rect(
+        stroke: 1pt + color,
+        fill: fill,
+        inset: (x: 0.6em, y: 0.5em),
+        radius: 5pt,
+      )[*#get-theorem-title(kind) #if counter != none [#(counter.display)()]*#if name != "" [ _(#name)_]]
+    )
+  ]
+}
+
+#let build-simple-title(kind) = (counter, name) => {
+  [*#get-theorem-title(kind) #if counter != none [#(counter.display)()]*#if name != "" [ _(#name)_]]
+}
+
 // show rule to apply style
 
 #let show-theorem(body, counter-level: none) = {
 
-  let build-title(kind, color: black, fill: white) = (counter, name) => {
-    [
-      #place(
-        dy: -1.2em,
-        rect(
-          stroke: 1pt + color,
-          fill: fill,
-          inset: (x: 0.6em, y: 0.5em),
-          radius: 5pt,
-        )[*#get-theorem-title(kind) #if counter != none [#(counter.display)()]*#if name != "" [ _(#name)_]]
-      )
-    ]
-  }
-
-  let build-simple-title(kind) = (counter, name) => {
-    [*#get-theorem-title(kind) #if counter != none [#(counter.display)()]*#if name != "" [ _(#name)_]]
-  }
   
   // prepare call for elembic
   show: e.prepare()
@@ -54,7 +56,7 @@
       sep-thickness: 0pt,
     ),
     set-theorem-frame(
-      definition, lemma, proposition, theorem, corollary, example, notation, remark, proof,
+      definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
       title-color: white,
       radius: 0pt,
       thickness: 0pt,
@@ -79,13 +81,6 @@
       title-inset: (x: 0em, y: 0.3em),
     ),
 
-    // GENERIC
-    set-theorem-frame(generic,
-        border-color: black,
-        body-color: luma(230),
-        body-inset: (x: .65em, bottom: .65em, top: .5em),
-    ),
-    
     // DEFINITION
     set-theorem(definition,
       title: build-title("definition", 
