@@ -28,7 +28,6 @@
 
 #let show-theorem(body, counter-level: none) = {
 
-  
   // prepare call for elembic
   show: e.prepare()
 
