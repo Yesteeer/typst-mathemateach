@@ -2,11 +2,11 @@
 #let show-template(
   body,
   title: "Épreuve",
-  time: "90 min",
+  time: "? min",
   material: "",
-  bonus: 2,
-  units: 2,
-  notation: 1
+  bonus: 0,
+  units: 0,
+  notation: 0
 ) = {
   let to-fill(length: 5cm) = {
     $underline(#h(length))$
