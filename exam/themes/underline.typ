@@ -1,9 +1,9 @@
 #import "@preview/elembic:1.1.1" as e
 #import "../template.typ": show-template
 #import "../core.typ": (
-  question_ as generic-question, 
+  generic-question, 
   question, 
-  subquestion_ as generic-subquestion, 
+  generic-subquestion, 
   subquestion, 
   set-theorem, 
   set-theorem-frame, 
@@ -12,7 +12,8 @@
   set-theorem-body-style,
   set-theorem-sep,
   set-theorem-shadow,
-  build-title,
+  get-exam-transl,
+  build-title
 )
 
 #let show-exam(body, ..args) = {
@@ -31,7 +32,7 @@
     set-theorem-frame(
       generic-question, generic-subquestion,
       title-color: white,
-      border-color: white,
+      border-color: black,
       footer-color: white,
       thickness: none,
       body-inset: (x: 0em, y: 0.3em),
@@ -45,12 +46,10 @@
       title-inset: (x: 0em, y: 0.65em),
       body-inset: (x: 0em, y: .8em),
     ),
-    /*
     set-theorem-title-style(
       generic-question,
       sep-thickness: 1pt,
     ),
-    */
 
     // SUBQUESTION
     set-theorem(

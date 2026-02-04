@@ -14,11 +14,11 @@
 #import "lang.typ": get-exam-transl
 
 // define questions
-#let question_ = generic-theorem.with(
+#let generic-question = generic-theorem.with(
   kind: "question"
 )
 
-#let subquestion_ = generic-theorem.with(
+#let generic-subquestion = generic-theorem.with(
   kind: "subquestion"
 )
 
@@ -37,37 +37,31 @@
   inherited_from: question-counter,
 )
 
-
-// build question title
-#let build-title(kind) = (counter, name) => {
-  context{
-    let exercise-number = if counter != none {(counter.get)().first() - 1}
-    let exercise-points = if exercise-number != none {exam-exercise-points.final().at(str(exercise-number), default: 0)}
-  grid(
-    columns: 2,
-    align: (left + horizon, right + top),
-    [*#get-exam-transl(kind) #if counter != none [#(counter.display)()]* #h(1fr) 
-    ],
-    rect(
-      inset: 5pt,
-      outset: 0pt,
-      radius: 5pt,
-    )[#h(2em)*#sym.slash* #if exercise-points != 0 [*#exercise-points*] else [#hide("0.0")]]
-  )}
+#let get-exercise-points(counter) = {
+   context{
+    let exercise-number = if counter != none {(counter.get)().first() - 1} else {none}
+    let exercise-points = if exercise-number != none {exam-exercise-points.final().at(str(exercise-number), default: 0)} else {none}
+    return exercise-points
+  }
 }
 
-#let question(points: 0, body, ..args) = {context{
+// builds a default title
+#let build-title(kind) = (points, counter, name) => {
+  [*#get-exam-transl(kind) #if counter != none [#(counter.display)()]* #h(1fr) #h(2em)*#sym.slash* #if points != 0 [*#points*] else [#hide("0.0")]]
+}
+
+#let question(points: 0, body, title: build-title("question"), ..args) = {context{
   let exercise-number = (question-counter.get)().at(0)
   exam-exercise-points.update(c => c + (str(exercise-number): points))
-  question_(
-    title: build-title("question"),
+  generic-question(
+    title: (counter, name) => title(get-exercise-points(counter), counter, name),
     counter: question-counter,
     ..args,
     body
   )
 }}
 
-#let subquestion(points: 5, body, ..args) = {
+#let subquestion(points: 5, body, title: (counter, name) => [#(counter.get)().at(1)#h(.2em))#h(.5em)], ..args) = {
   exam-exercise-points.update(c => c + c.pairs().map(
     ((k, v)) => if k == str(c.keys().len() - 1) {
       (k, v + points)
@@ -75,8 +69,8 @@
       (k, v)
     }
   ).to-dict())
-  subquestion_(
-    title: (counter, name) => [#(counter.get)().at(1)#h(.2em))#h(.5em)],
+  generic-subquestion(
+    title: title,
     counter: subquestion-counter,
     footer: [#h(1fr)#sym.slash #points],
     ..args,
