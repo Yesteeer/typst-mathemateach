@@ -1,5 +1,5 @@
 #import "@preview/elembic:1.1.1" as e
-#import "@preview/showybox:2.0.4" as showybox
+#import "../../../showybox/showy.typ" as showybox
 
 #import "frame.typ": frame, set-theorem-frame
 #import "title-style.typ": title-style, set-theorem-title-style

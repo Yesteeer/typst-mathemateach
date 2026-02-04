@@ -11,7 +11,7 @@
     e.field("color", e.types.union(color, gradient), default: black),
     e.field("weight", e.types.union(int, str), default: "regular"),
     e.field("align", alignment, default: start),
-    e.field("sep-thickness", length, default: 1pt),
+    e.field("sep-thickness", e.types.option(length), default: 1pt),
   )
 )
 

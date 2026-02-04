@@ -13,7 +13,7 @@
     e.field("footer-color", e.types.union(color, gradient), default: luma(220)),
     e.field("border-color", e.types.union(color, gradient), default: black),
     e.field("radius", e.types.union(relative, dictionary), default: 5pt),
-    e.field("thickness", e.types.union(length, dictionary), default: 1pt),
+    e.field("thickness", e.types.union(length, dictionary, none), default: 1pt),
     e.field("dash", str, default: "solid"),
     e.field("inset", e.types.union(relative, dictionary), default: (x: 1em, y: 0.65em)),
     e.field("title-inset", e.types.union(relative, dictionary), default: (x: 1em, y: 0.65em)),

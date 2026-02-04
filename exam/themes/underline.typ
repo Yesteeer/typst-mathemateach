@@ -33,7 +33,7 @@
       title-color: white,
       border-color: black,
       footer-color: white,
-      thickness: 0pt,
+      thickness: none,
       body-inset: (x: 0em, y: 0.3em),
       title-inset: (x: 0em, y: 0em),
       footer-inset: (x: 0em, y: 0em),
@@ -58,7 +58,7 @@
     set-theorem-title-style(
       generic-subquestion,
       inline: true,
-      sep-thickness: 0pt,
+      sep-thickness: none,
     ),
   )
   body
