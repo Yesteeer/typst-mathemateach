@@ -40,11 +40,20 @@
 
 // build question title
 #let build-title(kind) = (counter, name) => {
-  [*#get-exam-transl(kind) #if counter != none [#(counter.display)()]* #h(1fr) #context{
+  context{
     let exercise-number = if counter != none {(counter.get)().first() - 1}
     let exercise-points = if exercise-number != none {exam-exercise-points.final().at(str(exercise-number), default: 0)}
-    [#h(1fr)*#sym.slash* #if exercise-points != 0 [*#exercise-points*] else [#hide("0.0")]]
-  }]
+  grid(
+    columns: 2,
+    align: (left + horizon, right + top),
+    [*#get-exam-transl(kind) #if counter != none [#(counter.display)()]* #h(1fr) 
+    ],
+    rect(
+      inset: 5pt,
+      outset: 0pt,
+      radius: 5pt,
+    )[#h(2em)*#sym.slash* #if exercise-points != 0 [*#exercise-points*] else [#hide("0.0")]]
+  )}
 }
 
 #let question(points: 0, body, ..args) = {context{

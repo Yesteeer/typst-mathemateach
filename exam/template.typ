@@ -6,7 +6,8 @@
   material: "",
   bonus: 0,
   units: 0,
-  notation: 0
+  notation: 0,
+  presentation: 0,
 ) = {
   let to-fill(length: 5cm) = {
     $underline(#h(length))$
@@ -21,9 +22,9 @@
         Nom : #to-fill()  #h(1fr) Date : #to-fill()\
         Prénom: #to-fill()  #h(1fr) Classe : #to-fill()\
         #if time != "" [Durée : #time] #if material != "" [#h(1fr) Matériel autorisé: #material]\
-        Propreté du travail: #strong[\- 2 si travail bâclé] #h(1fr) #if bonus != 0 [Points défis: #to-fill(length:1cm) / #bonus (bonus)]  \
+        #if presentation != 0 [Propreté du travail: #to-fill(length:1cm) / #presentation] #h(1fr) #if bonus != 0 [Points défis: #to-fill(length:1cm) / #bonus (bonus)]  \
         #if units != 0 [Arrondis et unités: #to-fill(length:1cm) / #units #h(1fr) ] #if notation != 0 [Notations correctes: #to-fill(length:1cm) / #notation] #if units != 0 or notation != 0 [\ ]
-        #h(1fr)  Total: #to-fill(length:1cm) / #context{exam-exercise-points.final().values().sum(default: 0) + units + notation}\
+        #h(1fr)  Total: #to-fill(length:1cm) / #context{exam-exercise-points.final().values().sum(default: 0) + units + notation + presentation}\
       ]
     ]
   )

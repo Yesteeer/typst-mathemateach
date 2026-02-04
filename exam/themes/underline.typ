@@ -31,7 +31,7 @@
     set-theorem-frame(
       generic-question, generic-subquestion,
       title-color: white,
-      border-color: black,
+      border-color: white,
       footer-color: white,
       thickness: none,
       body-inset: (x: 0em, y: 0.3em),
@@ -45,10 +45,12 @@
       title-inset: (x: 0em, y: 0.65em),
       body-inset: (x: 0em, y: .8em),
     ),
+    /*
     set-theorem-title-style(
       generic-question,
       sep-thickness: 1pt,
     ),
+    */
 
     // SUBQUESTION
     set-theorem(
