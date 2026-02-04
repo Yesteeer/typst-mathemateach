@@ -7,23 +7,13 @@
 #import "footer-style.typ": footer-style, set-theorem-footer-style
 #import "sep.typ": sep, set-theorem-sep
 #import "shadow.typ": shadow, set-theorem-shadow
-#import "../title.typ": get-theorem-title
+#import "../lang.typ": get-theorem-title
 
 #let resolve-title(title, counter, name) = {
   if type(title) == function {
     return title(counter, name)
-  } else {
-    let final-title = title
-    if counter != none {
-      final-title += h(.4em)
-      final-title += (counter.display)()
-    }
-    if name != "" {
-      final-title += h(.4em)
-    final-title += name
-    }
-    return final-title
-  }
+  } 
+    return title
 }
 
 #let resolve-shadow(actual-shadow, arg-shadow) = {

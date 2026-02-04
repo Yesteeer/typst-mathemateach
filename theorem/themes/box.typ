@@ -3,7 +3,7 @@
 
 #import "../models.typ": *
 #import "../colors.typ": *
-#import "../title.typ": get-theorem-title, build-title, build-simple-title
+#import "../lang.typ": get-theorem-title, build-title, build-simple-title
 
 
 // show rule to apply style

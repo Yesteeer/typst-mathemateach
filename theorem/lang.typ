@@ -106,6 +106,11 @@
     en: "Caution",
     de: "Vorsicht"
   ),
+  question: (
+    fr: "Exercice",
+    de: "Ũbung",
+    en: "Exercise"
+  ),
 )
 
 #let get-theorem-title(kind) = (

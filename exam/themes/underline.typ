@@ -12,11 +12,12 @@
   set-theorem-body-style,
   set-theorem-sep,
   set-theorem-shadow,
-  get-exam-transl,
+  get-theorem-title,
   build-title
 )
 
 #let show-exam(body, ..args) = {
+  show: e.prepare()
   show: show-template.with(..args.named())
   show: e.apply(
 

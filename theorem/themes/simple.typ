@@ -2,7 +2,7 @@
 #import "@preview/elembic:1.1.1" as e
 
 #import "../models.typ": *
-#import "../title.typ": get-theorem-title
+#import "../lang.typ": get-theorem-title
 
 #let build-title(kind) = (counter, name) => {
   [_*#get-theorem-title(kind) #if counter != none [#(counter.display)()]*#if name != "" [ (#name)]_] + h(.4em)

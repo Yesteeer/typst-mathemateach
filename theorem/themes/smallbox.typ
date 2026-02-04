@@ -3,7 +3,7 @@
 
 #import "../models.typ": *
 #import "../colors.typ": *
-#import "../title.typ": get-theorem-title
+#import "../lang.typ": get-theorem-title
 
 
 #let build-title(kind, color: black, fill: white) = (counter, name) => {

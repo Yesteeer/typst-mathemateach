@@ -11,7 +11,7 @@
   set-theorem-sep,
   set-theorem-shadow,
 )
-#import "lang.typ": get-exam-transl
+#import "../theorem/lang.typ": get-theorem-title
 
 // define questions
 #let generic-question = generic-theorem.with(
@@ -47,16 +47,18 @@
 
 // builds a default title
 #let build-title(kind) = (points, counter, name) => {
-  [*#get-exam-transl(kind) #if counter != none [#(counter.display)()]* #h(1fr) #h(2em)*#sym.slash* #if points != 0 [*#points*] else [#hide("0.0")]]
+  [*#get-theorem-title(kind) #if counter != none [#(counter.display)()]* #h(1fr) #h(2em)*#sym.slash* #if points != 0 [*#points*] else [#hide("0.0")]]
 }
 
 #let question(points: 0, body, title: build-title("question"), ..args) = {context{
   let exercise-number = (question-counter.get)().at(0)
   exam-exercise-points.update(c => c + (str(exercise-number): points))
   generic-question(
-    title: (counter, name) => title(get-exercise-points(counter), counter, name),
+    title: if type(title) == function {
+      (counter, name) => title(get-exercise-points(counter), counter, name)
+    } else {title},
     counter: question-counter,
-    ..args,
+    ..args.named(),
     body
   )
 }}
@@ -73,7 +75,7 @@
     title: title,
     counter: subquestion-counter,
     footer: [#h(1fr)#sym.slash #points],
-    ..args,
+    ..args.named(),
     body
   )
 }
