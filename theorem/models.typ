@@ -1,53 +1,44 @@
-#import "core/theorem-core.typ": (
-  theorem_ as generic-theorem,
-  set-theorem,
-  set-theorem-body-style,
-  set-theorem-footer-style,
-  set-theorem-frame,
-  set-theorem-sep,
-  set-theorem-shadow,
-  set-theorem-title-style
-)
+#import "core.typ": generic-box
 
 // basic theorem block
 
-#let generic = generic-theorem.with(
-  kind: "generic"
+#let generic = generic-box.with(
+  kind: "generic",
 )
 
-#let theorem = generic-theorem.with(
+#let theorem = generic-box.with(
   kind: "theorem",
 )
 
-#let example = generic-theorem.with(
+#let example = generic-box.with(
   kind: "exercise"
 )
 
-#let proposition = generic-theorem.with(
+#let proposition = generic-box.with(
   kind: "proposition"
 )
 
-#let lemma = generic-theorem.with(
+#let lemma = generic-box.with(
   kind: "lemma"
 )
 
-#let corollary = generic-theorem.with(
+#let corollary = generic-box.with(
   kind: "corollary"
 )
 
-#let definition = generic-theorem.with(
+#let definition = generic-box.with(
   kind: "definition"
 )
 
-#let remark = generic-theorem.with(
+#let remark = generic-box.with(
   kind: "remark"
 )
 
-#let proof = generic-theorem.with(
+#let proof = generic-box.with(
   kind: "proof"
 )
 
-#let notation = generic-theorem.with(
+#let notation = generic-box.with(
   kind: "notation"
 )
 

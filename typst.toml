@@ -4,4 +4,4 @@ version = "0.1.1"
 entrypoint = "lib.typ"
 categories = [ ]
 disciplines = [ ]
-description = "theorem and basic exam features"
+description = "theorem and basic exam features for teaching mathematics"

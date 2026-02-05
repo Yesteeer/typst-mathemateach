@@ -1,9 +1,7 @@
 #import "@preview/rich-counters:0.2.2" as rc
 #import "@preview/elembic:1.1.1" as e
 
-#import "../models.typ": *
-#import "../colors.typ": *
-#import "../lang.typ": get-theorem-title, build-title, build-simple-title
+#import "../themes-imports.typ": *
 
 // show rule to apply style
 #let show-theorem(body, counter-level: none) = {
@@ -25,16 +23,16 @@
   show: e.apply(
     
     // applied to all custom theorems
-    set-theorem(
+    set-box(
       definition, lemma, proposition, theorem, corollary, example, notation, remark, generic,
       counter: thm-counter,
     ),
-    set-theorem-title-style(
+    set-box-title-style(
       definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
       color: black,
       sep-thickness: 0pt,
     ),
-    set-theorem-frame(
+    set-box-frame(
       definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
       title-color: white,
       border-color: black,
@@ -45,7 +43,7 @@
     ),
 
     // box style of: example, remark, notation, proof
-    set-theorem-frame(
+    set-box-frame(
       example, remark, notation, proof,
       border-color: white,
       body-inset: (x: 0em, y: 0.65em),
@@ -53,85 +51,85 @@
     ),
 
     // GENERIC
-    set-theorem-frame(generic,
+    set-box-frame(generic,
       title-color: gradient.linear(luma(200), white),
     ),
 
     // DEFINITION
-    set-theorem(definition,
+    set-box(definition,
       title: build-title("definition"),
     ),
-    set-theorem-frame(definition,
+    set-box-frame(definition,
       title-color: gradient.linear(colorful-cyan.lighten(50%), white, angle: 0deg),
       border-color: colorful-cyan.darken(20%),
     ),
 
     // LEMMA 
-    set-theorem(lemma,
+    set-box(lemma,
       title: build-title("lemma"),
     ),
-    set-theorem-frame(lemma,
+    set-box-frame(lemma,
       title-color: gradient.linear(sand-beige.lighten(50%), white, angle: 0deg),
       border-color: sand-beige.darken(20%),
     ),
 
     // PROPOSITION 
-    set-theorem(proposition,
+    set-box(proposition,
       title: build-title("proposition"),
     ),
-    set-theorem-frame(proposition,
+    set-box-frame(proposition,
       title-color: gradient.linear(colorful-bordeau.lighten(50%), white, angle: 0deg),
       border-color: colorful-bordeau.darken(20%),
     ),
 
     // THEOREM
-    set-theorem(theorem,
+    set-box(theorem,
       title: build-title("theorem"),
     ),
-    set-theorem-frame(theorem,
+    set-box-frame(theorem,
       title-color: gradient.linear(apple-green.lighten(50%), white, angle: 0deg),
       border-color: apple-green.darken(30%),
     ),
   
     // COROLLARY 
-    set-theorem(corollary,
+    set-box(corollary,
       title: build-title("corollary"),
     ),
-    set-theorem-frame(corollary,
+    set-box-frame(corollary,
       title-color: gradient.linear(colorful-purple.lighten(50%), white, angle: 0deg),
       border-color: colorful-purple.darken(20%),
     ),
     
     // EXAMPLE
-    set-theorem(example,
+    set-box(example,
       title: build-simple-title("example"),
     ),
     
 
     // REMARK
-    set-theorem(remark,
+    set-box(remark,
       title: build-simple-title("remark"),
     ),
 
     // NOTATION
-    set-theorem(notation, 
+    set-box(notation, 
       title: build-simple-title("notation"),
     ),
 
     // PROOF
-    set-theorem(proof,
-      title: [_#get-theorem-title("proof").#h(.4em)_],
+    set-box(proof,
+      title: [_#linguify("proof", from: lang-database).#h(.4em)_],
       above: 0.4em,
     ),
-    set-theorem-frame(proof,
+    set-box-frame(proof,
       border-color: white,
       body-inset: (x: .65em, y: 0.65em),
       title-inset: (x: .65em, y: 0.3em),
     ),
-    set-theorem-body-style(proof,
+    set-box-body-style(proof,
       suffix: h(1fr) + h(1.2em) + box(height: 0.65em, text(1.6em, baseline: -.2em, sym.square))
     ),
-    set-theorem-title-style(proof,
+    set-box-title-style(proof,
       inline: true
     ),
     

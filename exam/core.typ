@@ -1,26 +1,8 @@
 #import "@preview/elembic:1.1.1" as e
 #import "@preview/rich-counters:0.2.2" as rc
-#import "../theorem/theorem.typ":*
-#import simple: (
-  generic-theorem, 
-  set-theorem, 
-  set-theorem-frame, 
-  set-theorem-title-style, 
-  set-theorem-footer-style,
-  set-theorem-body-style,
-  set-theorem-sep,
-  set-theorem-shadow,
-)
-#import "../theorem/lang.typ": get-theorem-title
-
-// define questions
-#let generic-question = generic-theorem.with(
-  kind: "question"
-)
-
-#let generic-subquestion = generic-theorem.with(
-  kind: "subquestion"
-)
+#import "../theorem/rules.typ": *
+#import "models.typ": generic-question, generic-subquestion
+#import "func.typ": build-title
 
 // keep track of points for each exercise by its counter
 #let exam-exercise-points = state("exam-exercise-pts", (:))
@@ -43,11 +25,6 @@
     let exercise-points = if exercise-number != none {exam-exercise-points.final().at(str(exercise-number), default: 0)} else {none}
     return exercise-points
   }
-}
-
-// builds a default title
-#let build-title(kind) = (points, counter, name) => {
-  [*#get-theorem-title(kind) #if counter != none [#(counter.display)()]* #h(1fr) #h(2em)*#sym.slash* #if points != 0 [*#points*] else [#hide("0.0")]]
 }
 
 #let question(points: 0, body, title: build-title("question"), ..args) = {context{

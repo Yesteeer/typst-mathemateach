@@ -12,7 +12,7 @@
 = Géométrie euclidienne
 
 // a generic customisable box with matching styling (use (counter, name) => [] for custom title)
-#generic-theorem(title: build-title("Formula", color: black, fill: luma(230)), counter: none)[This is an important formula.]
+#generic-box(title: build-title("Formula", color: black, fill: luma(230)), counter: none)[This is an important formula.]
 
 #definition[ #lorem(20) ]
 

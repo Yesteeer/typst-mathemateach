@@ -33,7 +33,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 = Géométrie euclidienne
 
 // a generic customisable box with matching styling (use (counter, name) => [] for custom title)
-#generic(title: build-title("Formula"), counter: none)[This is an important formula.]
+#generic-box(title: build-title("Formula"), counter: none)[This is an important formula.]
 
 #definition[ #lorem(20) ]
 
@@ -50,11 +50,12 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // a theorem followed by its proof
 #theorem(label: <thm1>, name: [Pythagorean Theorem])[ #lorem(30) ]
 #proof[ This is a proof of @thm1. ]
+
 ```
 
 ![image](./theorem/examples/simple-test.png)
 
-### box-colorful theme
+### box theme
 ```typst
 #import "@local/mathemateach:0.1.0": *
 
@@ -72,7 +73,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ![image](./theorem/examples/box-test.png)
 
-### fancy-colorful theme
+### fancy theme
 ```typst
 #import "@local/mathemateach:0.1.0": *
 
@@ -90,7 +91,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ![image](./theorem/examples/fancy-test.png)
 
-### bar-colorful theme
+### bar theme
 ```typst
 #import "@local/mathemateach:0.1.0": *
 
@@ -108,7 +109,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ![image](./theorem/examples/bar-test.png)
 
-### tbar-colorful theme
+### tbar theme
 ```typst
 #import "@local/mathemateach:0.1.0": *
 
@@ -126,7 +127,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ![image](./theorem/examples/tbar-test.png)
 
-### smallbox-colorful theme
+### smallbox theme
 ```typst
 #import "@local/mathemateach:0.1.0": *
 
