@@ -1,7 +1,7 @@
 #import "../../lib.typ": *
 
 // import underline style
-#import exam.underline: *
+#import exam.boxed-pts: *
 
 #set page(height: auto, margin: 1cm)
 

@@ -3,6 +3,21 @@
 #import "../themes-import.typ": *
 #import "../func.typ": build-title
 
+#let build-title(kind) = (points, counter, name) => [
+  #box(
+    stroke: black, 
+    inset: (x: .8em, y: .6em),
+    radius: 3pt,
+    [*#linguify(kind, from: lang-database, default: kind) #if counter != none [
+      #(counter.display)()
+    ]* #h(1fr) #h(2em) *#sym.slash* #if points != 0 [*#points*] else [#hide("0.0")]]
+  )
+]
+
+#let question = question.with(
+  title: build-title("question"),
+)
+
 #let show-exam(body) = {
   show: e.prepare()
   
@@ -36,7 +51,7 @@
     ),
     set-box-title-style(
       generic-question,
-      sep-thickness: 1pt,
+      sep-thickness: none,
     ),
 
     // SUBQUESTION
@@ -51,9 +66,12 @@
     ),
     set-box-frame(
       generic-subquestion,
+      footer-inset: (
+        right: .6em
+      ),
       body-inset: (
         left: .6em
-      )
+      ),
     ),
   )
   body
