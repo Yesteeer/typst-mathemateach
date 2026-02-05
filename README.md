@@ -6,7 +6,7 @@ Mathemateach is a typst package (not yet published on the [Typst  universe](http
 > As this package was primary build for personal use, there is currently no documentation. The code is also a bit messy (and not at all commented !)
 
 ## Dependencies
-Mathemateach is build on top of the [showybox](https://github.com/Pablo-Gonzalez-Calderon/showybox-package) package and also uses [rich-counters](https://github.com/jbirnick/typst-rich-counters) counters and [elembic](https://github.com/PgBiel/elembic) custom elements and set/show rules. It also uses [linguify](https://github.com/typst-community/linguify) to manage langage support.
+Mathemateach is build on top of the [showybox](https://typst.app/universe/package/showybox/) package and also uses [rich-counters](https://typst.app/universe/package/rich-counters/) counters and [elembic](https://typst.app/universe/package/elembic/) custom elements and set/show rules. It also uses [linguify](https://typst.app/universe/package/linguify/) to manage langage support.
 
 ## Supported langages
 
