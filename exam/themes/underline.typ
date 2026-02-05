@@ -1,6 +1,6 @@
 #import "@preview/elembic:1.1.1" as e
-#import "../template.typ": show-template
 #import "../themes-import.typ": *
+#import "../header.typ": show-header
 #import "../func.typ": build-title
 
 #let show-exam(body) = {

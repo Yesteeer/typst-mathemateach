@@ -19,8 +19,16 @@ French, German and English are supported and theorem titles depend on text langa
 ## Quickstart
 Simply download the package locally (as described on the [Typst Packages](https://github.com/typst/packages)) repository. Then import and use mathemateach. 
 
+```typst
+#import "@local/mathemateach:0.1.0": *
+```
+
+## Theorem styles
+
 ### simple theme
 ```typst
+#import "@local/mathemateach:0.1.0": *
+
 // import simple style
 #import theorem.simple: * 
 
@@ -146,3 +154,88 @@ Simply download the package locally (as described on the [Typst Packages](https:
 ```
 
 ![image](./theorem/examples/smallbox-test.png)
+
+
+## Exam styles
+
+### underline theme
+
+```typst
+#import "@local/mathemateach:0.1.0": *
+
+// import underline style
+#import exam.underline: *
+
+#set page(height: auto, margin: 1cm)
+
+// show exam header with total points
+#show: show-header
+
+// apply exam style
+#show: show-exam
+
+#question[
+  This question has two parts
+  #subquestion(points: 3)[First part #v(2em)]
+  #subquestion(points: 5)[Second part #v(2em)]
+]
+
+#question(points: 7)[
+  This question has only one part
+]
+
+#question(title: build-title("Difficult question"), points: 6)[This is a difficult question.]
+
+#question(title: [*Bonus* #h(1fr)/ 3], counter: none)[This is a bonus question whose points are not added to the total.]
+
+#question(points: 7, label: <this-question>)[
+  The bonus above has no counter, so this is @this-question.
+]
+
+```
+
+![image](./exam/examples/underline-test.png)
+
+### boxed-pts theme
+
+```typst
+#import "@local/mathemateach:0.1.0": *
+
+// import boxed-pts style
+#import exam.boxed-pts: *
+
+#set page(height: auto, margin: 1cm)
+
+// show exam header with total points
+#show: show-header
+
+// applies exam style
+#show: show-exam
+
+[...]
+
+```
+
+![image](./exam/examples/boxed-pts-test.png)
+
+### boxed-title theme
+
+```typst
+#import "@local/mathemateach:0.1.0": *
+
+// import boxed-title style
+#import exam.boxed-title: *
+
+// show exam header with total points
+#show: show-header
+
+#set page(height: auto, margin: 1cm)
+
+// applies exam style
+#show: show-exam
+
+[...]
+
+```
+
+![image](./exam/examples/boxed-title-test.png)

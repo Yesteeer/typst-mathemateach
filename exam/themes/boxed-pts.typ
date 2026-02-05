@@ -1,5 +1,5 @@
 #import "@preview/elembic:1.1.1" as e
-#import "../template.typ": show-template
+#import "../header.typ": show-header
 #import "../themes-import.typ": *
 
 #let build-title(kind) = (points, counter, name) => [
@@ -8,8 +8,7 @@
     ]* #h(1fr) #h(2em) 
     #box(
       stroke: black, 
-      inset: (left: 1.5em, right: .5em, y: .5em), 
-      radius: 3pt,
+      inset: (left: 1.7em, right: .5em, y: .5em),
       baseline: .5em,
     )[*#sym.slash* #if points != 0 [*#points*] else [#hide("0.0")]]
   ]

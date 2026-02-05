@@ -1,5 +1,5 @@
 #import "@preview/elembic:1.1.1" as e
-#import "../template.typ": show-template
+#import "../header.typ": show-header
 #import "../themes-import.typ": *
 #import "../func.typ": build-title
 
@@ -7,7 +7,6 @@
   #box(
     stroke: black, 
     inset: (x: .8em, y: .6em),
-    radius: 3pt,
     [*#linguify(kind, from: lang-database, default: kind) #if counter != none [
       #(counter.display)()
     ]* #h(1fr) #h(2em) *#sym.slash* #if points != 0 [*#points*] else [#hide("0.0")]]
