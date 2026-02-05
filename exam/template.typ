@@ -1,4 +1,5 @@
 #import "core.typ": exam-exercise-points
+
 #let show-template(
   body,
   title: "Épreuve",

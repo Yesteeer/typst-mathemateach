@@ -1,10 +1,8 @@
 #import "@preview/elembic:1.1.1" as e
-#import "../template.typ": show-template
 #import "../themes-import.typ": *
 
-#let show-exam(body, ..args) = {
+#let show-exam(body) = {
   show: e.prepare()
-  show: show-template.with(..args.named())
   show: e.apply(
 
     // BOTH

@@ -133,16 +133,21 @@
 
     // PROOF
     set-box(proof,
-      title: [_#linguify("proof", from: lang-database):_],
+      title: [_#linguify("proof", from: lang-database).#h(.4em)_],
       above: 0.4em,
     ),
     set-box-frame(proof,
-      body-inset: (x: 1em, y: 0.3em),
-      title-inset: (y: 0.65em),
+      border-color: white,
+      body-inset: (x: .65em, y: 0.65em),
+      title-inset: (x: .65em, y: 0.3em),
     ),
     set-box-body-style(proof,
       suffix: h(1fr) + h(1.2em) + box(height: 0.65em, text(1.6em, baseline: -.2em, sym.square))
     ),
+    set-box-title-style(proof,
+      inline: true
+    ),
+    
   )
   body
 }

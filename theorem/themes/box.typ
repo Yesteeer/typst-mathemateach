@@ -48,8 +48,8 @@
     ),
     set-box-frame(
       definition, lemma, proposition, theorem, corollary, generic,
-      body-inset: (x: 0.65em, bottom: 1em, top: 0.3em),
-      title-inset: (x: 1.2em, top: 0.65em),
+      body-inset: (x: 0.65em, y: 1em),
+      title-inset: (x: 1.2em, top: 0.65em, bottom: 0em),
     ),
 
     // box style of: example, remark, notation and proof
@@ -129,16 +129,19 @@
 
     // PROOF
     set-box(proof,
-      title: [_#linguify("proof", from: lang-database):_],
+      title: [_#linguify("proof", from: lang-database).#h(.4em)_],
       above: 0.4em,
     ),
     set-box-frame(proof,
       border-color: white,
-      body-inset: (x: 1em, y: 0.3em),
-      title-inset: (y: 0.65em),
+      body-inset: (x: .65em, y: 0.65em),
+      title-inset: (x: .65em, y: 0.3em),
     ),
     set-box-body-style(proof,
       suffix: h(1fr) + h(1.2em) + box(height: 0.65em, text(1.6em, baseline: -.2em, sym.square))
+    ),
+    set-box-title-style(proof,
+      inline: true
     ),
     
   )

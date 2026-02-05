@@ -12,20 +12,22 @@
 = Géométrie euclidienne
 
 // a generic customisable box with matching styling (use (counter, name) => [] for custom title)
-#generic-box(title: build-title("Formula", color: black, fill: luma(230)), counter: none)[This is an important formula.]
+#generic-box(title: build-title("Formula", fill: luma(230)), counter: none)[This is an important formula.]
 
-#definition[ #lorem(20) ]
+#definition[ #lorem(10) ]
 
-#remark[ #lorem(20) ]
+#remark(counter: none)[ #lorem(10) ]
 
-#lemma[ #lorem(20) ]
+#lemma[ #lorem(10) ]
 
-#example[ #lorem(20) ]
+#example[ #lorem(10) ]
 
-#proposition[ #lorem(20) ]
+#proposition[ #lorem(10) ]
 
-#notation[ #lorem(20) ]
+#notation[ #lorem(10) ]
 
 // a theorem followed by its proof
-#theorem(label: <thm1>, name: [Pythagorean Theorem])[ #lorem(30) ]
+#theorem(label: <thm1>, name: [Pythagorean Theorem])[ #lorem(10) ]
 #proof[ This is a proof of @thm1. ]
+
+#corollary[ #lorem(10) ]
