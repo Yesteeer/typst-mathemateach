@@ -4,12 +4,10 @@
 #import "../func.typ": build-title
 
 #let build-title(kind) = (points, counter, name) => [
-  #box(
-    stroke: black, 
-    inset: (x: .8em, y: .6em),
+  #points-box(
     [*#linguify(kind, from: lang-database, default: kind) #if counter != none [
       #(counter.display)()
-    ]* #h(1fr) #h(2em) *#sym.slash* #if points != 0 [*#points*] else [#hide("0.0")]]
+    ]* #h(1fr) #h(2em) *#sym.slash* #if points != 0 [*#points*] else [#hide("0.")]]
   )
 ]
 
@@ -56,7 +54,7 @@
     // SUBQUESTION
     set-box(
       generic-subquestion,
-      title: none,
+      title: "",
     ),
     set-box-title-style(
       generic-subquestion,
@@ -71,6 +69,20 @@
       body-inset: (
         left: .6em
       ),
+    ),
+
+    // POINTS-BOX
+    set-box(
+      points-box,
+      title: "",
+      align: right,
+    ),
+    set-box-frame(
+      points-box,
+      body-inset: (left: 0.65em, right: .5em, y: 0.5em),
+      title-inset: (bottom: 0em, rest: 0em),
+      thickness: 1pt,
+      radius: 0pt
     ),
   )
   body

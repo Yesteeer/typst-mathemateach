@@ -19,12 +19,11 @@
   inherited_from: question-counter,
 )
 
+// needs context
 #let get-exercise-points(counter) = {
-   context{
     let exercise-number = if counter != none {(counter.get)().first() - 1} else {none}
-    let exercise-points = if exercise-number != none {exam-exercise-points.final().at(str(exercise-number), default: 0)} else {none}
+    let exercise-points = if exercise-number != none {exam-exercise-points.final().at(str(exercise-number), default: 0)} else {0}
     return exercise-points
-  }
 }
 
 #let question(points: 0, body, title: build-title("question"), ..args) = {context{

@@ -3,8 +3,9 @@
 #let resolve-title(title, counter, name) = {
   if type(title) == function {
     return title(counter, name)
-  } 
+  } else {
     return title
+  }
 }
 
 #let resolve-shadow(actual-shadow, arg-shadow) = {

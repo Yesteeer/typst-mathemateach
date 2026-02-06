@@ -8,3 +8,7 @@
 #let generic-subquestion = generic-box.with(
   kind: "subquestion"
 )
+
+#let points-box = generic-box.with(
+  kind: "pts-box"
+)

@@ -105,7 +105,7 @@
   display: it => e.get(get => {
     let inline = get(box-title-style).inline
     let args = (
-      title: if inline {none} else {resolve-title(it.title, it.counter, it.name)},
+      title: if inline {""} else {resolve-title(it.title, it.counter, it.name)},
       footer: it.footer,
       frame: get(box-frame) + it.frame,
       title-style: get(box-title-style) + it.title-style,

@@ -11,20 +11,19 @@
 // apply exam style
 #show: show-exam
 
-
 #question[
   This question has two parts
   #subquestion(points: 3)[First part #v(2em)]
   #subquestion(points: 5)[Second part #v(2em)]
 ]
 
-#question(points: 7)[
-  This question has only one part
+#question(points: 0)[
+  This question has only one part and no defined total number of points.
 ]
 
 #question(title: build-title("Difficult question"), points: 6)[This is a difficult question.]
 
-#question(title: [*Bonus* #h(1fr)/ 3], counter: none)[This is a bonus question whose points are not added to the total.]
+#question(title: [*Bonus*], counter: none)[This is a bonus question.]
 
 #question(points: 7, label: <this-question>)[
   The bonus above has no counter, so this is @this-question.

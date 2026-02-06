@@ -2,16 +2,21 @@
 #import "../header.typ": show-header
 #import "../themes-import.typ": *
 
-#let build-title(kind) = (points, counter, name) => [
-    *#linguify(kind, from: lang-database, default: kind) #if counter != none [
-      #(counter.display)()
-    ]* #h(1fr) #h(2em) 
-    #box(
-      stroke: black, 
-      inset: (left: 1.7em, right: .5em, y: .5em),
-      baseline: .5em,
-    )[*#sym.slash* #if points != 0 [*#points*] else [#hide("0.0")]]
+#let build-title(kind) = (points, counter, name) => grid(
+  columns: (1fr, 1fr),
+  align: (left + horizon, right + horizon),
+  [*#linguify(kind, from: lang-database, default: kind) #if counter != none [
+    #(counter.display)()
+  ]*],
+  [#context{
+    show: set-box(
+      width: measure([*#sym.slash* #if points != 0 [*#points*] else [#hide("0.")]]).width + 2.25em);
+      points-box[
+        *#sym.slash* #if points != 0 [*#points*] else [#hide("0.")]
+      ]
+    }
   ]
+)
 
 #let question = question.with(
   title: build-title("question")
@@ -24,11 +29,11 @@
 
     // BOTH
     set-box-title-style(
-      generic-question, generic-subquestion,
+      generic-question, generic-subquestion, points-box,
       color: black,
     ),
     set-box-footer-style(
-      generic-question, generic-subquestion,
+      generic-question, generic-subquestion, points-box,
       sep-thickness: 0pt,
     ),
     set-box-frame(
@@ -45,7 +50,7 @@
     // QUESTION
     set-box-frame(
       generic-question,
-      title-inset: (x: 0em, bottom: 0em, top: .65em),
+      title-inset: (x: 0em, bottom: 0em, top:0em),
       body-inset: (x: 0em, y: 1em),
     ),
     set-box-title-style(
@@ -56,7 +61,7 @@
     // SUBQUESTION
     set-box(
       generic-subquestion,
-      title: none,
+      title: "",
     ),
     set-box-title-style(
       generic-subquestion,
@@ -72,6 +77,21 @@
         left: .6em
       )
     ),
+
+    // POINTS-BOX
+    set-box(
+      points-box,
+      title: "",
+      align: right,
+    ),
+    set-box-frame(
+      points-box,
+      body-inset: (left: 1.65em, right: .5em, y: 0.4em),
+      title-inset: (bottom: 0em, rest: 0em),
+      thickness: 1pt,
+      radius: 0pt
+    ),
+    
   )
   body
 }
