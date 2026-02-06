@@ -3,31 +3,6 @@
 
 #import "../themes-imports.typ": *
 
-#let title-box = generic-box.with(
-  kind: "title-box"
-)
-
-
-#let build-title(kind, color: black, fill: white) = (counter, name) => {
-  [
-    #place(
-      dy: -1.2em,
-      context{show: set-box(
-        width: measure([#linguify(kind, from: lang-database, default: kind)+#if counter != none [#(counter.display)()#h(.5em)]]+if name != "" [#name#h(.3em)]+h(1em)).width,
-        frame: (
-          border-color: color,
-          body-color: fill,
-          thickness: 1pt,
-        ),
-      );title-box[*#linguify(kind, from: lang-database, default: kind) #if counter != none [#(counter.display)()]*#if name != "" [ _(#name)_]]}
-    )
-  ]
-}
-
-#let build-simple-title(kind) = (counter, name) => {
-  [_#linguify(kind, from: lang-database, default: kind)  #if counter != none [#(counter.display)()]#if name != "" [ _(#name)_]_] + h(.4em)
-}
-
 
 // show rule to apply style
 
@@ -46,13 +21,13 @@
   } else {
     none
   }
-  
+
   show: e.apply(
-    
+
     // applied to all custom theorems
     set-box(
       definition, lemma, proposition, theorem, corollary, example, notation, remark, generic,
-      counter: thm-counter
+      counter: thm-counter,
     ),
     set-box-title-style(
       definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
@@ -62,19 +37,19 @@
     set-box-frame(
       definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
       title-color: white,
-      radius: 0pt,
-      thickness: 0pt,
+      border-color: black,
+      radius: 0pt
     ),
-    
+
     // box style of: definition, lemma, proposition, theorem and corollary
     set-box(
       definition, lemma, proposition, theorem, corollary, generic,
-      above: 2.5em,
+      above: 1.3em,
     ),
     set-box-frame(
       definition, lemma, proposition, theorem, corollary, generic,
-      body-inset: (x: 0em, bottom: 1em, top: 1em),
-      title-inset: (x: 0em, y: .2em),
+      body-inset: (x: 0.65em, y: 1em),
+      title-inset: (x: 1.2em, top: 0.65em, bottom: 0em),
     ),
 
     // box style of: example, remark, notation and proof
@@ -84,48 +59,81 @@
       body-inset: (x: 0em, y: 0.65em),
       title-inset: (x: 0em, y: 0.3em),
     ),
-    set-box-title-style(
-      example, remark, notation,
-      inline: true
+
+    // GENERIC
+    set-box-frame(generic,
+      body-color: luma(230),
+      title-color: luma(230)
     ),
+    set-box-shadow(generic,
+      color: luma(160),
+      offset: 4pt
+    ),
+    
 
     // DEFINITION
     set-box(definition,
-      title: build-title("definition", 
-        color: colorful-cyan.darken(10%),
-        fill: colorful-cyan.lighten(80%),
-      ),
+      title: build-title("definition"),
     ),
-    
-    // LEMMA 
-    set-box(lemma,
-      title: build-title("lemma", 
-        color: sand-beige.darken(20%), 
-        fill: sand-beige.lighten(80%),
-      ),
+    set-box-frame(definition,
+      body-color: colorful-cyan.lighten(70%),
+      title-color: colorful-cyan.lighten(70%),
     ),
-    // PROPOSITION 
-    set-box(proposition,
-      title: build-title("proposition", 
-        color: colorful-bordeau.darken(10%), 
-        fill: colorful-bordeau.lighten(80%),
-      ),
+    set-box-shadow(definition,
+      color: colorful-cyan.lighten(30%),
+      offset: 4pt
     ),
 
-    // THEOREM
-    set-box(theorem,
-      title: build-title("theorem", 
-        color: apple-green.darken(20%), 
-        fill: apple-green.lighten(80%),
-      ),
+    // LEMMA 
+    set-box(lemma,
+      title: build-title("lemma"),
+    ),
+    set-box-frame(lemma,
+      body-color: sand-beige.lighten(70%),
+      title-color: sand-beige.lighten(70%),
+    ),
+    set-box-shadow(lemma,
+      color: sand-beige.lighten(30%),
+      offset: 4pt
+    ),
+
+    // PROPOSITION 
+    set-box(proposition,
+      title: build-title("proposition"),
+    ),
+    set-box-frame(proposition,
+      body-color: colorful-bordeau.lighten(70%),
+      title-color: colorful-bordeau.lighten(70%),
+    ),
+    set-box-shadow(proposition,
+      color: colorful-bordeau.lighten(30%),
+      offset: 4pt
     ),
     
+    // THEOREM
+    set-box(theorem,
+      title: build-title("theorem"),
+    ),
+    set-box-frame(theorem,
+      body-color: apple-green.lighten(70%),
+      title-color: apple-green.lighten(70%),
+    ),
+    set-box-shadow(theorem,
+      color: apple-green.lighten(30%),
+      offset: 4pt
+    ),
+
     // COROLLARY 
     set-box(corollary,
-      title: build-title("corollary", 
-        color: colorful-purple.darken(10%), 
-        fill: colorful-purple.lighten(85%),
-      ),
+      title: build-title("corollary"),
+    ),
+    set-box-frame(corollary,
+      body-color: colorful-purple.lighten(70%),
+      title-color: colorful-purple.lighten(70%),
+    ),
+    set-box-shadow(corollary,
+      color: colorful-purple.lighten(30%),
+      offset: 4pt
     ),
     
     // EXAMPLE
@@ -143,6 +151,7 @@
       title: build-simple-title("notation"),
     ),
 
+
     // PROOF
     set-box(proof,
       title: [_#linguify("proof", from: lang-database).#h(.4em)_],
@@ -158,14 +167,6 @@
     ),
     set-box-title-style(proof,
       inline: true
-    ),
-
-    // TITLE-BOX
-    set-box(
-      title-box,
-      frame: (
-        body-inset: (x: .5em, y: .5em)
-      ),
     ),
     
   )

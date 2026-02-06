@@ -8,7 +8,7 @@
 }
 
 #let build-simple-title(kind) = (counter, name) => {
-  [#linguify(kind, from: lang-database, default: kind) #if counter != none [#(counter.display)()]#if name != "" [ (#name)]] + h(.4em)
+  [_#linguify(kind, from: lang-database, default: kind) #if counter != none [#(counter.display)()]#if name != "" [ (#name)]_] + h(.4em)
 }
 
 // show rule to apply style

@@ -38,7 +38,7 @@
       definition, lemma, proposition, theorem, corollary, example, notation, remark, proof, generic,
       title-color: white,
       border-color: black,
-      radius: 5pt
+      radius: 0pt
     ),
 
     // box style of: definition, lemma, proposition, theorem and corollary

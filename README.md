@@ -1,6 +1,6 @@
 # Mathemateach
 
-Mathemateach is a typst package (not yet published on the [Typst  universe](https://typst.app/universe/)) which contains tools for writing lecture notes for teaching mathematics. For now, it contains highly customizable theorem boxes and comes along with 6 themes that can be used out of the box. It also contains exam template with 3 customizable question themes. But there will be additional features soon (for example some custom CetZ elements).
+Mathemateach is a typst package (not yet published on the [Typst  universe](https://typst.app/universe/)) which contains tools for writing lecture notes for teaching mathematics. For now, it contains highly customizable theorem boxes and comes along with 6 themes that can be used out of the box. It also contains exam template with 2 customizable question themes. But there will be additional features soon (for example some custom CetZ elements).
 
 > [!NOTE]
 > As this package was primary build for personal use, there is currently no documentation. The code is also a bit messy (and not at all commented !)

@@ -4,3 +4,4 @@
 #import "themes/bar.typ"
 #import "themes/tbar.typ"
 #import "themes/smallbox.typ"
+#import "themes/shadow.typ"

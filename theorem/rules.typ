@@ -51,7 +51,7 @@
 
 #let set-box-shadow(..rules) = it => {
   show: if rules.pos() == () {e.set_(box-shadow, ..rules.named())} else {
-    e.filtered(e.filters.or_(rules.pos()),
+    e.filtered(e.filters.or_(..rules.pos()),
       e.set_(box-shadow, ..rules.named())
     )
   }

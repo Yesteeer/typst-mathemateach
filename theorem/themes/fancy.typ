@@ -16,10 +16,6 @@
   ]
 }
 
-#let build-simple-title(kind) = (counter, name) => {
-  [*#linguify(kind, from: lang-database, default: kind) #if counter!= none [#(counter.display)()]*#if name != "" [ _(#name)_]]
-}
-
 // show rule to apply style
 
 #let show-theorem(body, counter-level: none) = {
@@ -60,7 +56,7 @@
     // box style of: definition, lemma, proposition, theorem and corollary
     set-box(
       definition, lemma, proposition, theorem, corollary, generic,
-      above: 1.3em,
+      above: 2em,
     ),
     set-box-frame(
       definition, lemma, proposition, theorem, corollary, generic,
