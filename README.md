@@ -155,6 +155,24 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 ![image](./theorem/examples/smallbox-test.png)
 
+### shadow theme
+```typst
+#import "@local/mathemateach:0.1.0": *
+
+// import shadow style
+#import theorem.shadow: * 
+
+#set page(height: auto, margin: 1cm)
+#set heading(numbering: "1.")
+
+#show: show-theorem.with(counter-level: 1)  
+
+[...]
+
+```
+
+![image](./theorem/examples/shadow-test.png)
+
 
 ## Exam styles
 
