@@ -10,9 +10,9 @@
   ]*],
   [#context{
     show: set-box(
-      width: measure([*#sym.slash* #if points != 0 [*#points*] else [#hide("0.")]]).width + 2.25em);
+      width: measure([*#sym.slash* #if points != 0 [*#points*] else [#hide("0.")]]).width + 3em);
       points-box[
-        *#sym.slash* #if points != 0 [*#points*] else [#hide("0.")]
+        #h(1fr)*#sym.slash* #if points != 0 [*#points*] else [#hide("0.")]
       ]
     }
   ]
