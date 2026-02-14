@@ -1,8 +1,8 @@
 #import "../global.typ": *
 
-#let resolve-title(title, counter, name) = {
+#let resolve-title(title, kind, counter, name) = {
   if type(title) == function {
-    return title(counter, name)
+    return title(kind, counter, name)
   } else {
     return title
   }
@@ -37,11 +37,11 @@
   }
 }
 
-#let resolve-body(prefix, body, suffix, counter, title, name, inline) = {
+#let resolve-body(prefix, body, suffix, kind, counter, title, name, inline) = {
   let start-content = []
   let end-content = []
   if inline {
-    prefix += resolve-title(title, counter, name)
+    prefix += resolve-title(title, kind, counter, name)
   }
   if type(body) == array and body.len() > 1 {
     start-content += prefix

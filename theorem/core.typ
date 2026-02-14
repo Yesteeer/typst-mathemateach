@@ -103,9 +103,9 @@
   prefix: "carex",
   
   display: it => e.get(get => {
-    let inline = get(box-title-style).inline
+    let inline = (get(box-title-style) + it.title-style).inline
     let args = (
-      title: if inline {""} else {resolve-title(it.title, it.counter, it.name)},
+      title: if inline {""} else {resolve-title(it.title, it.kind, it.counter, it.name)},
       footer: it.footer,
       frame: get(box-frame) + it.frame,
       title-style: get(box-title-style) + it.title-style,
@@ -120,7 +120,7 @@
     ) + resolve-spacing(it.above, it.below)
     showybox(
       ..args,
-      ..resolve-body(get(box-body-style).prefix, it.body, get(box-body-style).suffix, it.counter, it.title, it.name, inline)
+      ..resolve-body(get(box-body-style).prefix, it.body, get(box-body-style).suffix, it.kind, it.counter, it.title, it.name, inline)
     )
   }),
 

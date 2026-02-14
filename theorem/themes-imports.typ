@@ -1,7 +1,6 @@
-#import "models.typ": *
 #import "../global.typ": linguify, lang-database
-#import "../colors.typ": *
-#import "func.typ": build-title, build-simple-title
+#import "models.typ": *
+#import "../colors.typ": default-palette
 #import "rules.typ": (
   set-box,
   set-box-sep,
