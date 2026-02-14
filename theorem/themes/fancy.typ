@@ -53,6 +53,7 @@
     title-inset: (x: 0em, y: 0.3em),
     title-color: white,
     thickness: none,
+    radius: 0pt,
   )
   show: set-box-title-style(
     color: black,
