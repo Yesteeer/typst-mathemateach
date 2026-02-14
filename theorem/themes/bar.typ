@@ -66,7 +66,7 @@
       title-color: colors.at(kind).lighten(80%),
       body-color: colors.at(kind).lighten(80%),
       thickness: (left: 2pt, rest: none),
-      radius: 0pt,
+      //radius: 0pt,
       body-inset: (x: 0.65em, y: 1em),
       title-inset: (x: 1.2em, top: 0.65em, bottom: 0em),
     )
