@@ -31,7 +31,7 @@
   exam-exercise-points.update(c => c + (str(exercise-number): points))
   generic-question(
     title: if type(title) == function {
-      (counter, name) => title(get-exercise-points(counter), counter, name)
+      (kind, counter, name) => title(get-exercise-points(counter), counter, name)
     } else {title},
     counter: question-counter,
     ..args.named(),
@@ -39,7 +39,7 @@
   )
 }}
 
-#let subquestion(points: 0, body, title: (counter, name) => [#(counter.get)().at(1)#h(.2em))#h(.5em)], ..args) = {
+#let subquestion(points: 0, body, title: (kind, counter, name) => [#(counter.get)().at(1)#h(.2em))#h(.5em)], ..args) = {
   exam-exercise-points.update(c => c + c.pairs().map(
     ((k, v)) => if k == str(c.keys().len() - 1) {
       (k, v + points)
