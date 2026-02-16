@@ -24,7 +24,7 @@
 // apply imported style, with theorem counter based on level-1 headings and adding new color for custom "Formula" kind.
 #show: show-theorem.with(
   counter-level: 1, 
-  colors: default-palette + (Formula: navy)
+  colors: (Formula: navy)
 )  
 
 
