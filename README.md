@@ -40,7 +40,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // apply imported style, with theorem counter based on level-1 headings and adding new color for custom "Formula" kind.
 #show: show-theorem.with(
   counter-level: 1, 
-  colors: default-palette + (Formula: navy)
+  colors: (Formula: navy)
 )  
 
 
@@ -66,7 +66,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 = Define new environments (with or without matching style)
 
 // define a formula box with matching styling (note: a color must by added to the color dictionary when applying the show rule,otherwis the matching style is not applied)
-#let formula = styled-box.with(
+#let formula = generic-box.with(
   kind: "Formula",
 )
 
@@ -139,11 +139,6 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // import box style
 #import theorem.box: * 
 
-#set page(height: auto, margin: 1cm)
-#set heading(numbering: "1.")
-
-#show: show-theorem.with(counter-level: 1)  
-
 [...]
 
 ```
@@ -156,11 +151,6 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 // import fancy style
 #import theorem.fancy: * 
-
-#set page(height: auto, margin: 1cm)
-#set heading(numbering: "1.")
-
-#show: show-theorem.with(counter-level: 1)  
 
 [...]
 
@@ -175,11 +165,6 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // import bar style
 #import theorem.bar: * 
 
-#set page(height: auto, margin: 1cm)
-#set heading(numbering: "1.")
-
-#show: show-theorem.with(counter-level: 1)  
-
 [...]
 
 ```
@@ -192,11 +177,6 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 // import tbar style
 #import theorem.tbar: * 
-
-#set page(height: auto, margin: 1cm)
-#set heading(numbering: "1.")
-
-#show: show-theorem.with(counter-level: 1)  
 
 [...]
 
@@ -211,11 +191,6 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 // import shadow style
 #import theorem.shadow: * 
-
-#set page(height: auto, margin: 1cm)
-#set heading(numbering: "1.")
-
-#show: show-theorem.with(counter-level: 1)  
 
 [...]
 

@@ -6,7 +6,9 @@
 
 // show rule to apply style
 
-#let show-theorem(body, counter-level: none, colors: default-palette) = {
+#let show-theorem(body, counter-level: none, colors: (:)) = {
+
+  let colors = default-palette + colors
 
   // prepare elembic for references
   

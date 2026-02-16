@@ -4,7 +4,9 @@
 #import "../themes-imports.typ": *
 
 
-#let show-theorem(body, counter-level: none, colors: default-palette) = {
+#let show-theorem(body, counter-level: none, colors: (:)) = {
+
+  let colors = default-palette + colors
   
   // prepare elembic for references
   
