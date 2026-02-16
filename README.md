@@ -112,18 +112,18 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 = Update pre-defined styles with set rules
 
-// change definition box appearance
-#show: set-box-frame(
+// remove definition counter
+#show: set-box(
   definition,
-  thickness: 1pt,
+  counter: none,
 )
 
 #definition[ #lorem(10) ]
 
-// change bar side of all pre-defined environments (with "generic-box")
-#show: set-box-frame(
+// change title color for all pre-defined environments (with "generic-box")
+#show: set-box-title-style(
   generic-box,
-  thickness: (left: none, right: 2pt),
+  color: blue.darken(20%),
 )
 
 #lemma[ #lorem(10) ]
