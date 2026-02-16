@@ -2,10 +2,6 @@
 
 // basic theorem block
 
-#let styled-box = generic-box.with(
-  kind: "styled-box",
-)
-
 #let theorem = generic-box.with(
   kind: "theorem",
 )

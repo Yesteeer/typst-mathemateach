@@ -61,7 +61,7 @@
   )
   show: it => colors.keys().fold(it, (it, kind) => {
     show: set-box-frame(
-      theorem.with(kind: kind),
+      generic-box.with(kind: kind),
       border-color: colors.at(kind).darken(20%),
       title-color: colors.at(kind).lighten(80%),
       body-color: colors.at(kind).lighten(80%),

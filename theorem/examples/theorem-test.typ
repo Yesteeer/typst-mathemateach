@@ -1,7 +1,20 @@
 #import "../../lib.typ": *
 
-// import theorem bar style
-#import theorem.bar: *
+// import style
+#let style = sys.inputs.style
+#import if style == "bar" {
+  theorem.bar
+} else if style == "box" {
+  theorem.box
+} else if style == "fancy" {
+  theorem.fancy
+} else if style == "shadow" {
+  theorem.shadow
+} else if style == "tbar" {
+  theorem.tbar
+} else {
+  theorem.simple
+}: *
 
 #show: show-theorem.with(counter-level: 1)
 
@@ -37,7 +50,7 @@
 = Define new environments (with or without matching style)
 
 // define a formula box with matching styling (note: a color must by added to the color dictionary when applying the show rule,otherwis the matching style is not applied)
-#let formula = styled-box.with(
+#let formula = generic-box.with(
   kind: "Formula",
 )
 
@@ -83,18 +96,18 @@
 
 = Update pre-defined styles with set rules
 
-// change definition box appearance
-#show: set-box-frame(
+// remove definition counter
+#show: set-box(
   definition,
-  thickness: 1pt,
+  counter: none,
 )
 
 #definition[ #lorem(10) ]
 
-// change bar side of all pre-defined environments (with "generic-box")
-#show: set-box-frame(
+// change title color for all pre-defined environments (with "generic-box")
+#show: set-box-title-style(
   generic-box,
-  thickness: (left: none, right: 2pt),
+  color: blue.darken(20%),
 )
 
 #lemma[ #lorem(10) ]

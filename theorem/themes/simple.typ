@@ -25,7 +25,7 @@
 
   // show theorem body text as italic
   show: e.show_(e.filters.or_(
-    theorem, lemma, definition, corollary, proposition, styled-box,
+    theorem, lemma, definition, corollary, proposition
   ), it => {
     set text(style: "italic")
     it
