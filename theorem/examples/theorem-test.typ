@@ -3,20 +3,19 @@
 // import style
 #let style = sys.inputs.style
 #import if style == "bar" {
-  theorem.bar
+  themes.bar
 } else if style == "box" {
-  theorem.box
+  themes.box
 } else if style == "fancy" {
-  theorem.fancy
+  themes.fancy
 } else if style == "shadow" {
-  theorem.shadow
+  themes.shadow
 } else if style == "tbar" {
-  theorem.tbar
+  themes.tbar
 } else {
-  theorem.simple
+  themes.simple
 }: *
 
-#show: show-theorem.with(counter-level: 1)
 
 #set page(height: auto, margin: 1cm)
 #set heading(numbering: "1.")

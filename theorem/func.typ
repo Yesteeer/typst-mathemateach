@@ -1,4 +1,6 @@
-#import "../global.typ": *
+#import "@preview/linguify:0.5.0": linguify
+
+#let lang-database = toml("../lang.toml")
 
 #let resolve-title(title, kind, counter, name) = {
   if type(title) == function {
@@ -56,10 +58,4 @@
 
 #let resolve-supplement(it) = [#linguify(it.kind, from: lang-database)]
 
-#let build-title(kind) = (counter, name) => {
-  [*#linguify(kind, from: lang-database, default: kind) #if counter != none [#(counter.display)()]*#if name != "" [ _(#name) _]]
-}
 
-#let build-simple-title(kind) = (counter, name) => {
-  [_#linguify(kind, from: lang-database, default: kind) #if counter != none [#(counter.display)()]#if name != "" [ _(#name) _]_]
-}

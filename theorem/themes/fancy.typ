@@ -1,7 +1,7 @@
 #import "@preview/rich-counters:0.2.2" as rc
-#import "@preview/elembic:1.1.1" as e
 
-#import "../themes-imports.typ": *
+#import "../../deps.typ": *
+#import "../models.typ": *
 
 
 #let show-theorem(body, counter-level: none, colors: (:)) = {

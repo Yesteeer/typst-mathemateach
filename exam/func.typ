@@ -1,4 +1,6 @@
-#import "../global.typ": linguify, lang-database
+#import "@preview/linguify:0.5.0": linguify
+
+#let lang-database = toml("../lang.toml")
 
 // builds a default title
 #let build-title(kind) = (points, kind, counter, name) => {

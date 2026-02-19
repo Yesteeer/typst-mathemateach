@@ -5,9 +5,6 @@
 
 #set page(height: auto, margin: 1cm)
 
-// show exam header with total points
-#show: show-header
-
 // apply exam style
 #show: show-exam
 

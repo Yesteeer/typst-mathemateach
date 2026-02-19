@@ -1,8 +1,6 @@
-// import styles
-#import "default.typ": *
-#import "exam/exam.typ" 
-#import "theorem/themes.typ" 
-#import "theorem/models.typ": *
+#import "@preview/linguify:0.5.0": linguify
+#import "@preview/elembic:1.1.1" as e
+#import "colors.typ": default-palette
 #import "theorem/rules.typ": (
   set-box,
   set-box-sep,
@@ -13,3 +11,4 @@
   set-box-footer-style
 )
 
+#let lang-database = toml("lang.toml")

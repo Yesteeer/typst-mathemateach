@@ -1,6 +1,9 @@
-#import "@preview/elembic:1.1.1" as e
+#import "../../deps.typ": *
+//#import "../func.typ": build-title
+#import "../models.typ": *
 #import "../header.typ": show-header
-#import "../themes-import.typ": *
+#import "../core.typ": question, subquestion
+
 
 #let build-title(kind) = (points, counter, name) => grid(
   columns: (1fr, 1fr),
@@ -22,7 +25,10 @@
   title: build-title("question")
 )
 
-#let show-exam(body) = {
+#let show-exam(body, header: true) = {
+
+  show: if header {show-header} else {none}
+
   show: e.prepare()
   
   show: e.apply(
