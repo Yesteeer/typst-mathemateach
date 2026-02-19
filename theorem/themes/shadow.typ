@@ -3,7 +3,6 @@
 #import "../../deps.typ": *
 #import "../models.typ": *
 
-
 // show rule to apply style
 
 #let show-theorem(body, counter-level: none, colors: (:)) = {
@@ -65,9 +64,9 @@
   show: it => colors.keys().fold(it, (it, kind) => {
     show: set-box-frame(
       theorem.with(kind: kind),
-      border-color: black,
-      title-color: colors.at(kind).lighten(80%),
-      body-color: colors.at(kind).lighten(80%),
+      border-color: colors.at(kind).darken(10%),
+      title-color: white,
+      body-color: white,
       thickness: 1pt,
       radius: 0pt,
       body-inset: (x: 0.65em, y: 1em),
@@ -75,7 +74,7 @@
     )
     show: set-box-shadow(
       theorem.with(kind: kind),
-      color: colors.at(kind).lighten(30%),
+      color: colors.at(kind).lighten(50%),
       offset: 4pt,
     )
     it
