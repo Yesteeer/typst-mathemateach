@@ -1,7 +1,6 @@
 #import "@preview/rich-counters:0.2.2" as rc
 
 #import "../../deps.typ": *
-#import "../models.typ": *
 
 // show rule to apply style
 
