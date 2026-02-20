@@ -66,7 +66,7 @@
     )
     show: set-box-shadow(
       theorem.with(kind: kind),
-      color: colors.at(kind, default: white).lighten(50%),
+      color: colors.at(kind, default: black).lighten(50%),
       offset: 4pt,
     )
     it
