@@ -56,9 +56,9 @@
   show: it => styles.at("fancy").fold(it, (it, kind) => {
     show: set-box-frame(
       generic-box.with(kind: kind),
-      border-color: colors.at(kind).darken(20%),
-      title-color: colors.at(kind).lighten(80%),
-      body-color: colors.at(kind).lighten(80%),
+      border-color: colors.at(kind, default: black).darken(20%),
+      title-color: colors.at(kind, default: white).lighten(80%),
+      body-color: colors.at(kind, default: white).lighten(80%),
       thickness: (left: 2pt, rest: none),
       body-inset: (x: 0.65em, y: 1em),
       title-inset: (x: 1.2em, top: 0.65em, bottom: 0em),

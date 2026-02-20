@@ -56,8 +56,8 @@
   show: it => styles.at("fancy").fold(it, (it, kind) => {
     show: set-box-frame(
       theorem.with(kind: kind),
-      title-color: gradient.linear(colors.at(kind).lighten(60%), white, angle: 0deg),
-      border-color: colors.at(kind).darken(20%),
+      title-color: gradient.linear(colors.at(kind, default: black).lighten(60%), white, angle: 0deg),
+      border-color: colors.at(kind, default: black).darken(20%),
       thickness: (left: 1.5pt, rest: none),
       radius: 0pt,
       body-inset: (x: .65em, y: .65em),

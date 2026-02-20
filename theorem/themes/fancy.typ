@@ -63,12 +63,12 @@
   show: it => styles.at("fancy").fold(it, (it, kind) => {
     show: set-box-title-style(
       theorem.with(kind: kind),
-      color: colors.at(kind).darken(10%),
+      color: colors.at(kind, default: black).darken(10%),
       sep-thickness: none,
     )
     show: set-box-frame(
       theorem.with(kind: kind),
-      border-color: colors.at(kind).darken(10%),
+      border-color: colors.at(kind, default: black).darken(10%),
       thickness: 1.5pt,
       radius: 0pt,
       title-color: white,

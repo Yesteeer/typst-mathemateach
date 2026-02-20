@@ -56,7 +56,7 @@
   show: it => styles.at("fancy").fold(it, (it, kind) => {
     show: set-box-frame(
       theorem.with(kind: kind),
-      border-color: colors.at(kind).darken(10%),
+      border-color: colors.at(kind, default: black).darken(10%),
       title-color: white,
       body-color: white,
       thickness: 1pt,
@@ -66,7 +66,7 @@
     )
     show: set-box-shadow(
       theorem.with(kind: kind),
-      color: colors.at(kind).lighten(50%),
+      color: colors.at(kind, default: white).lighten(50%),
       offset: 4pt,
     )
     it
