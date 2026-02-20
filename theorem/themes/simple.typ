@@ -1,40 +1,22 @@
 #import "@preview/rich-counters:0.2.2" as rc
 
 #import "../../deps.typ": *
+#import "../func.typ": prepare-theme
 
 // show rule to apply style
 
-#let show-theorem(body, counter-level: none, colors: (:)) = {
+#let show-theorem(body, counter-level: none, kind-colors: (:), kind-styles: (:)) = {
 
-  let colors = default-palette + colors
+  let (thm-counter, colors, styles) = prepare-theme(counter-level, kind-colors, kind-styles)
   
   // prepare elembic for references
-  
+
   show: e.prepare()
 
-  // define theorem counter
-  let thm-counter = if counter-level != none {
-    rc.rich-counter(
-      identifier: "thm-counter", 
-      inherited_levels:  counter-level, 
-      inherited_from: heading
-    )
-  } else {
-    none
-  }
-
-  // show theorem body text as italic
-  show: e.show_(e.filters.or_(
-    theorem, lemma, definition, corollary, proposition
-  ), it => {
-    set text(style: "italic")
-    it
-  })
-
-  // define title style
+  // define title
   
   let build-title = (kind, counter, name) => {
-    if kind in colors.keys() [
+    if kind in styles.at("fancy") [
       _*#linguify(kind, from: lang-database, default: kind) #if counter != none [#(counter.display)()]*_ #if name != "" [ _(#name)_ ]#h(.4em)
     ]
     else if kind == "proof" [
@@ -45,12 +27,18 @@
     ]
   }
   
+  // define showybox style
+
   show: set-box(
     title: build-title,
     counter: thm-counter,
     above: 1.3em,
   )
+
+  // define simple style
+
   show: set-box-frame(
+    e.filters.or_(..((styles.at("simple") + styles.at("fancy")).map(it => generic-box.with(kind: it)))),
     border-color: white,
     body-inset: (x: 0em, y: 0.65em),
     title-inset: (x: 0em, y: 0em),
@@ -59,19 +47,29 @@
     radius: 0pt,
   )
   show: set-box-title-style(
+    e.filters.or_(..((styles.at("simple") + styles.at("fancy")).map(it => generic-box.with(kind: it)))),
     color: black,
     inline: true,
     sep-thickness: none
   )
+
+  // define fancy style
+
+  show: e.show_(e.filters.or_(..(styles.at("fancy").map(it => generic-box.with(kind: it)))),
+    it => {
+      set text(style: "italic")
+      it
+    }
+  )
+
+  // special kinds
+
   show: set-box-body-style(proof,
     suffix: h(1fr) + h(1.2em) + box(height: 0.65em, text(1.6em, baseline: -.2em, sym.square))
   )
   show: set-box(proof,
     above: .3em,
   )
-  show: set-box-frame(proof,
-    body-inset: (x: .65em, y: 0.65em),
-    title-inset: (x: .65em, y: 0.3em),
-  )
+
   body
 }

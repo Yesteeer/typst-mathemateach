@@ -1,6 +1,6 @@
 # Mathemateach
 
-Mathemateach is a typst package (not yet published on the [Typst  universe](https://typst.app/universe/)) which contains tools for writing lecture notes for teaching mathematics. For now, it contains highly customizable theorem boxes and comes along with 6 themes that can be used out of the box. It also contains exam template with 2 customizable question themes. But there will be additional features soon (for example some custom CetZ elements).
+Mathemateach is a typst package (not yet published on the [Typst  universe](https://typst.app/universe/)) which contains tools for writing lecture notes for teaching mathematics. For now, it contains highly customizable theorem boxes and comes along with 6 themes that can be used out of the box with 2 custom styles per theme. It also contains exam template with 2 customizable question themes. But there will be additional features soon (for example some custom CetZ elements).
 
 > [!NOTE]
 > As this package was primary build for personal use, there is currently no documentation. The code is also a bit messy (and not at all commented !)
@@ -40,32 +40,37 @@ Simply download the package locally (as described on the [Typst Packages](https:
 // apply imported style, with theorem counter based on level-1 headings and adding new color for custom "Formula" kind.
 #show: show-theorem.with(
   counter-level: 1, 
-  colors: (Formula: navy)
+  kind-colors: ("Formula": navy),
+  kind-styles: ("Formula": "fancy")
 )  
 
+= Demo with #sys.inputs.style theme
 
-= Default environments
+== Default environments
 
-#definition[ #lorem(10) ]
+#generic-box[ generic-box with showybox style ]
 
-#remark(counter: none)[ #lorem(10) ]
+#definition[ definition with fancy style ]
 
-#lemma[ #lorem(10) ]
+#remark(counter: none)[ remark with simple style ]
 
-#example[ #lorem(10) ]
+#lemma[ lemma with fancy style ]
 
-#proposition[ #lorem(10) ]
+#example[ example with simple style ]
 
-#notation[ #lorem(10) ]
+#proposition[ proposition with fancy ]
 
-#theorem(label: <thm1>, name: [Pythagorean Theorem])[ #lorem(10) ]
-#proof[ This is a proof of @thm1. ]
+#notation[ notation with simple style ]
 
-#corollary[ #lorem(10) ]
+#theorem(label: <thm1>, name: [Pythagorean Theorem])[ theorem with fancy style ]
+#proof[ This is a proof of @thm1 with simple style ]
 
-= Define new environments (with or without matching style)
+#corollary[ corollary with fancy style ]
 
-// define a formula box with matching styling (note: a color must by added to the color dictionary when applying the show rule,otherwis the matching style is not applied)
+== Define new environments (with or without matching style)
+
+// define a formula box with matching styling (style and color must be passed as args in show-theorem)
+
 #let formula = generic-box.with(
   kind: "Formula",
 )
@@ -110,7 +115,7 @@ Simply download the package locally (as described on the [Typst Packages](https:
 
 #tip[This is a useful tip.] 
 
-= Update pre-defined styles with set rules
+== Update pre-defined styles with set rules
 
 // remove definition counter
 #show: set-box(

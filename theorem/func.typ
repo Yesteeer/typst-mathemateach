@@ -1,6 +1,21 @@
 #import "@preview/linguify:0.5.0": linguify
+#import "@preview/rich-counters:0.2.2" as rc
+#import "../colors.typ": default-palette
 
 #let lang-database = toml("../lang.toml")
+
+#let default-styles = (
+  "generic-box": "showybox",
+  "theorem": "fancy",
+  "exercise": "simple",
+  "proposition": "fancy",
+  "lemma": "fancy",
+  "corollary": "fancy",
+  "definition": "fancy",
+  "remark": "simple",
+  "proof": "simple",
+  "notation": "simple"
+)
 
 #let resolve-title(title, kind, counter, name) = {
   if type(title) == function {
@@ -59,3 +74,29 @@
 #let resolve-supplement(it) = [#linguify(it.kind, from: lang-database)]
 
 
+#let prepare-theme(counter-level, kind-colors, kind-styles) = {
+
+  let colors = default-palette + kind-colors
+  let kind-styles = default-styles + kind-styles
+
+  let styles = kind-styles.pairs().fold(
+  ("showybox": (), "fancy": (), "simple": ()),
+  (acc, x) => acc.pairs().map(k => 
+    if x.at(1) == k.at(0) {(k.at(0), k.at(1) + (x.at(0),))}
+    else {(k.at(0), k.at(1))}).to-dict()
+) 
+  // define theorem counter
+  
+  let thm-counter = if counter-level != none {
+    rc.rich-counter(
+      identifier: "thm-counter", 
+      inherited_levels:  counter-level, 
+      inherited_from: heading
+    )
+  } else {
+    none
+  }
+
+  return (thm-counter, colors, styles)
+
+}

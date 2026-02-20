@@ -23,30 +23,34 @@
 // apply imported style, with theorem counter based on level-1 headings and adding new color for custom "Formula" kind.
 #show: show-theorem.with(
   counter-level: 1, 
-  colors: (Formula: navy)
+  kind-colors: ("Formula": navy),
+  kind-styles: ("Formula": "fancy")
 )  
 
+= Demo with #sys.inputs.style theme
 
-= Default environments
+== Default environments
 
-#definition[ #lorem(10) ]
+#generic-box[ generic-box with showybox style ]
 
-#remark(counter: none)[ #lorem(10) ]
+#definition[ definition with fancy style ]
 
-#lemma[ #lorem(10) ]
+#remark(counter: none)[ remark with simple style ]
 
-#example[ #lorem(10) ]
+#lemma[ lemma with fancy style ]
 
-#proposition[ #lorem(10) ]
+#example[ example with simple style ]
 
-#notation[ #lorem(10) ]
+#proposition[ proposition with fancy ]
 
-#theorem(label: <thm1>, name: [Pythagorean Theorem])[ #lorem(10) ]
-#proof[ This is a proof of @thm1. ]
+#notation[ notation with simple style ]
 
-#corollary[ #lorem(10) ]
+#theorem(label: <thm1>, name: [Pythagorean Theorem])[ theorem with fancy style ]
+#proof[ This is a proof of @thm1 with simple style ]
 
-= Define new environments (with or without matching style)
+#corollary[ corollary with fancy style ]
+
+== Define new environments (with or without matching style)
 
 // define a formula box with matching styling (note: a color must by added to the color dictionary when applying the show rule,otherwis the matching style is not applied)
 #let formula = generic-box.with(
@@ -93,7 +97,7 @@
 
 #tip[This is a useful tip.] 
 
-= Update pre-defined styles with set rules
+== Update pre-defined styles with set rules
 
 // remove definition counter
 #show: set-box(

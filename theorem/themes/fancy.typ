@@ -1,31 +1,22 @@
 #import "@preview/rich-counters:0.2.2" as rc
 
 #import "../../deps.typ": *
+#import "../func.typ": prepare-theme
 
-#let show-theorem(body, counter-level: none, colors: (:)) = {
+// show rule to apply style
 
-  let colors = default-palette + colors
+#let show-theorem(body, counter-level: none, kind-colors: (:), kind-styles: (:)) = {
+
+  let (thm-counter, colors, styles) = prepare-theme(counter-level, kind-colors, kind-styles)
   
   // prepare elembic for references
-  
+
   show: e.prepare()
 
-  // define theorem counter
-  
-  let thm-counter = if counter-level != none {
-    rc.rich-counter(
-      identifier: "thm-counter", 
-      inherited_levels:  counter-level, 
-      inherited_from: heading
-    )
-  } else {
-    none
-  }
+  // define title
 
-  // define title style
-  
   let build-title = (kind, counter, name) => {
-    if kind in colors.keys() [
+    if kind in styles.at("fancy") [
       #place(
         dy: -.65em,
         rect(
@@ -43,12 +34,18 @@
     ]
   }
 
+  // define showybox style
+
   show: set-box(
     title: build-title,
     counter: thm-counter,
     above: 2em,
   )
+
+  // define simple style
+  
   show: set-box-frame(
+    e.filters.or_(..(styles.at("simple").map(it => generic-box.with(kind: it)))),
     body-inset: (x: 0em, y: 0.5em),
     title-inset: (x: 0em, y: 0.3em),
     title-color: white,
@@ -56,16 +53,14 @@
     radius: 0pt,
   )
   show: set-box-title-style(
+    e.filters.or_(..(styles.at("simple").map(it => generic-box.with(kind: it)))),
     color: black,
     sep-thickness: none,
   )
-  show: set-box-title-style(proof,
-    inline: true
-  )
-  show: set-box-body-style(proof,
-    suffix: h(1fr) + h(1.2em) + box(height: 0.65em, text(1.6em, baseline: -.2em, sym.square))
-  )
-  show: it => colors.keys().fold(it, (it, kind) => {
+
+  // define fancy style
+
+  show: it => styles.at("fancy").fold(it, (it, kind) => {
     show: set-box-title-style(
       theorem.with(kind: kind),
       color: colors.at(kind).darken(10%),
@@ -76,10 +71,21 @@
       border-color: colors.at(kind).darken(10%),
       thickness: 1.5pt,
       radius: 0pt,
+      title-color: white,
       body-inset: (x: 1em, bottom: 1em, top: .7em),
       title-inset: (x: 1em, y: .2em),
     )
     it
   })
+
+  // special kinds
+
+  show: set-box-title-style(proof,
+    inline: true
+  )
+  show: set-box-body-style(proof,
+    suffix: h(1fr) + h(1.2em) + box(height: 0.65em, text(1.6em, baseline: -.2em, sym.square))
+  )
+
   body
 }
