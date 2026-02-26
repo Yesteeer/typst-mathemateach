@@ -16,9 +16,9 @@
   title: build-title("question"),
 )
 
-#let show-exam(body, header: true) = {
+#let show-exam(body, ..args) = {
 
-  show: if header {show-header} else {none}
+  show: if args.named().len() > 0 {show-header.with(..args.named())} else {none}
 
   show: e.prepare()
   
