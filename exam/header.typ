@@ -36,3 +36,5 @@
   )
   body
 }
+
+#let get-header-pts(function) = function(exam-exercise-points.final().values().sum(default: 0))

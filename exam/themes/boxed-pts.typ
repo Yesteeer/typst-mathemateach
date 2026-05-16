@@ -27,7 +27,9 @@
 
 #let show-exam(body, ..args) = {
 
-  show: if args.named().len() > 0 {show-header.with(..args.named())} else {none}
+  show: it => {
+    if args.named().len() > 0 {show-header(it, ..args.named())} else {it}
+  }
 
   show: e.prepare()
   
