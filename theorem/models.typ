@@ -7,6 +7,10 @@
 )
 
 #let example = generic-box.with(
+  kind: "example"
+)
+
+#let exercise = generic-box.with(
   kind: "exercise"
 )
 

@@ -7,7 +7,8 @@
 #let default-styles = (
   "generic-box": "showybox",
   "theorem": "fancy",
-  "exercise": "simple",
+  "exercise": "fancy",
+  "example": "simple",
   "proposition": "fancy",
   "lemma": "fancy",
   "corollary": "fancy",
