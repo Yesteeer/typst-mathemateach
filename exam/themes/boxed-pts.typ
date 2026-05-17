@@ -10,7 +10,7 @@
   align: (left + horizon, right + horizon),
   [*#linguify(kind, from: lang-database, default: kind) #if counter != none [
     #(counter.display)()
-  ]*],
+  ]* #if name != "" [#name]],
   [#context{
     show: set-box(
       width: measure([*#sym.slash* #if points != 0 [*#points*] else [#hide("0.")]]).width + 3em);

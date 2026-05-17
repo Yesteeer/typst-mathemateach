@@ -8,7 +8,7 @@
   #points-box(
     [*#linguify(kind, from: lang-database, default: kind) #if counter != none [
       #(counter.display)()
-    ]* #h(1fr) #h(2em) *#sym.slash* #if points != 0 [*#points*] else [#hide("0.")]]
+    ]*#if name != "" [#name] #h(1fr) #h(2em) *#sym.slash* #if points != 0 [*#points*] else [#hide("0.")]]
   )
 ]
 
