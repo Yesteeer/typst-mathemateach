@@ -5,7 +5,7 @@
 
 // show rule to apply style
 
-#let show-theorem(body, counter-level: none, kind-colors: (:), kind-styles: (:)) = {
+#let theorem-box(body, counter-level: none, kind-colors: (:), kind-styles: (:)) = {
 
   let (thm-counter, colors, styles) = prepare-theme(counter-level, kind-colors, kind-styles)
   

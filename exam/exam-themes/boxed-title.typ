@@ -16,7 +16,7 @@
   title: build-title("question"),
 )
 
-#let show-exam(body, ..args) = {
+#let exam-boxed-title(body, ..args) = {
 
   show: it => {
     if args.named().len() > 0 {show-header.with(..args.named()); it} else {it}
