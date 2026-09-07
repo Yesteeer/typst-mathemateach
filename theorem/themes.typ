@@ -1,6 +1,0 @@
-#import "themes/simple.typ"
-#import "themes/box.typ"
-#import "themes/fancy.typ"
-#import "themes/bar.typ"
-#import "themes/tbar.typ"
-#import "themes/shadow.typ"

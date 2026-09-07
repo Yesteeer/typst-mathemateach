@@ -1,0 +1,6 @@
+#import "theorem-themes/simple.typ"
+#import "theorem-themes/box.typ"
+#import "theorem-themes/fancy.typ"
+#import "theorem-themes/bar.typ"
+#import "theorem-themes/tbar.typ"
+#import "theorem-themes/shadow.typ"
