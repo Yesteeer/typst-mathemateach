@@ -5,9 +5,9 @@
 
 // show rule to apply style
 
-#let theorem-fancy(body, counter-level: none, kind-colors: (:), kind-styles: (:)) = {
+#let theorem-fancy(body, counter-level: none, colors: (:), styles: (:)) = {
 
-  let (thm-counter, colors, styles) = prepare-theme(counter-level, kind-colors, kind-styles)
+  let (thm-counter, colors, styles) = prepare-theme(counter-level, colors, styles)
   
   // prepare elembic for references
 
@@ -16,7 +16,7 @@
   // define title
 
   let build-title = (kind, counter, name) => {
-    if kind in styles.at("fancy") [
+    if kind in styles.at("colorful") + styles.at("light") [
       #place(
         dy: -.65em,
         rect(
@@ -42,10 +42,10 @@
     above: 2em,
   )
 
-  // define simple style
+  // define basic style
   
   show: set-box-frame(
-    e.filters.or_(..(styles.at("simple").map(it => generic-box.with(kind: it)))),
+    e.filters.or_(..(styles.at("basic").map(it => generic-box.with(kind: it)))),
     body-inset: (x: 0em, y: 0.5em),
     title-inset: (x: 0em, y: 0.3em),
     title-color: white,
@@ -53,14 +53,14 @@
     radius: 0pt,
   )
   show: set-box-title-style(
-    e.filters.or_(..(styles.at("simple").map(it => generic-box.with(kind: it)))),
+    e.filters.or_(..(styles.at("basic").map(it => generic-box.with(kind: it)))),
     color: black,
     sep-thickness: none,
   )
 
-  // define fancy style
+  // define colorful style
 
-  show: it => styles.at("fancy").fold(it, (it, kind) => {
+  show: it => styles.at("colorful").fold(it, (it, kind) => {
     show: set-box-title-style(
       theorem.with(kind: kind),
       color: colors.at(kind, default: black).darken(10%),
@@ -70,6 +70,26 @@
       theorem.with(kind: kind),
       border-color: colors.at(kind, default: black).darken(10%),
       thickness: 1.5pt,
+      radius: 0pt,
+      title-color: white,
+      body-inset: (x: 1em, bottom: 1em, top: .7em),
+      title-inset: (x: 1em, y: .2em),
+    )
+    it
+  })
+
+  // define light style
+
+  show: it => styles.at("light").fold(it, (it, kind) => {
+    show: set-box-title-style(
+      theorem.with(kind: kind),
+      color: colors.at(kind, default: black).darken(10%),
+      sep-thickness: none,
+    )
+    show: set-box-frame(
+      theorem.with(kind: kind),
+      border-color: colors.at(kind, default: black).darken(10%),
+      thickness: (top: 1.5pt),
       radius: 0pt,
       title-color: white,
       body-inset: (x: 1em, bottom: 1em, top: .7em),

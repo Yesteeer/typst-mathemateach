@@ -5,9 +5,9 @@
 
 // show rule to apply style
 
-#let theorem-bar(body, counter-level: none, kind-colors: (:), kind-styles: (:)) = {
+#let theorem-bar(body, counter-level: none, colors: (:), styles: (:)) = {
 
-  let (thm-counter, colors, styles) = prepare-theme(counter-level, kind-colors, kind-styles)
+  let (thm-counter, colors, styles) = prepare-theme(counter-level, colors, styles)
   
   // prepare elembic for references
 
@@ -16,7 +16,7 @@
   // define title
 
   let build-title = (kind, counter, name) => {
-    if kind in styles.at("fancy") [
+    if kind in styles.at("colorful") + styles.at("light") [
       *#linguify(kind, from: lang-database, default: kind) #if counter != none [#(counter.display)()]* #if name != "" [ _(#name)_]
     ]
     else if kind == "proof" [
@@ -35,10 +35,10 @@
     above: 1.3em,
   )
   
-  // define simple style
+  // define basic style
 
   show: set-box-frame(
-    e.filters.or_(..(styles.at("simple").map(it => generic-box.with(kind: it)))),
+    e.filters.or_(..(styles.at("basic").map(it => generic-box.with(kind: it)))),
     body-inset: (x: 0em, y: 0.5em),
     title-inset: (x: 0em, y: 0.3em),
     title-color: white,
@@ -46,14 +46,14 @@
     thickness: none
   )
   show: set-box-title-style(
-    e.filters.or_(..(styles.at("simple").map(it => generic-box.with(kind: it)))),
+    e.filters.or_(..(styles.at("basic").map(it => generic-box.with(kind: it)))),
     color: black,
     sep-thickness: none
   )
 
-  // define fancy style
+  // define colorful style
   
-  show: it => styles.at("fancy").fold(it, (it, kind) => {
+  show: it => styles.at("colorful").fold(it, (it, kind) => {
     show: set-box-frame(
       generic-box.with(kind: kind),
       border-color: colors.at(kind, default: black).darken(20%),
@@ -67,10 +67,33 @@
     it
   })
   show: set-box-title-style(
-    e.filters.or_(..(styles.at("fancy").map(it => generic-box.with(kind: it)))),
+    e.filters.or_(..(styles.at("colorful").map(it => generic-box.with(kind: it)))),
     color: black,
     sep-thickness: none
   )
+
+  // define light style
+  
+  show: it => styles.at("light").fold(it, (it, kind) => {
+    show: set-box-frame(
+      generic-box.with(kind: kind),
+      border-color: colors.at(kind, default: black).darken(20%),
+      title-color: white,
+      body-color: white,
+      thickness: (left: 2pt, rest: none),
+      body-inset: (x: 0.65em, y: 1em),
+      title-inset: (x: 1.2em, top: 0.65em, bottom: 0em),
+      radius: 0pt,
+    )
+    it
+  })
+  show: set-box-title-style(
+    e.filters.or_(..(styles.at("light").map(it => generic-box.with(kind: it)))),
+    color: black,
+    sep-thickness: none
+  )
+  
+
 
 
   // special kinds

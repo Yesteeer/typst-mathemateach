@@ -5,9 +5,9 @@
 
 // show rule to apply style
 
-#let theorem-simple(body, counter-level: none, kind-colors: (:), kind-styles: (:)) = {
+#let theorem-simple(body, counter-level: none, colors: (:), styles: (:)) = {
 
-  let (thm-counter, colors, styles) = prepare-theme(counter-level, kind-colors, kind-styles)
+  let (thm-counter, colors, styles) = prepare-theme(counter-level, colors, styles)
   
   // prepare elembic for references
 
@@ -16,8 +16,11 @@
   // define title
   
   let build-title = (kind, counter, name) => {
-    if kind in styles.at("fancy") [
+    if kind in styles.at("colorful") [
       _*#linguify(kind, from: lang-database, default: kind) #if counter != none [#(counter.display)()]*_ #if name != "" [ _(#name)_ ]#h(.4em)
+    ]
+    else if kind in styles.at("light") [
+      _#linguify(kind, from: lang-database, default: kind) #if counter != none [#(counter.display)()]_ #if name != "" [ _(#name)_ ]#h(.4em)
     ]
     else if kind == "proof" [
       _#linguify("proof", from: lang-database).#h(.4em)_
@@ -35,10 +38,10 @@
     above: 1.3em,
   )
 
-  // define simple style
+  // define basic style
 
   show: set-box-frame(
-    e.filters.or_(..((styles.at("simple") + styles.at("fancy")).map(it => generic-box.with(kind: it)))),
+    e.filters.or_(..((styles.at("basic") + styles.at("colorful") + styles.at("light")).map(it => generic-box.with(kind: it)))),
     border-color: white,
     body-inset: (x: 0em, y: 0.65em),
     title-inset: (x: 0em, y: 0em),
@@ -47,15 +50,24 @@
     radius: 0pt,
   )
   show: set-box-title-style(
-    e.filters.or_(..((styles.at("simple") + styles.at("fancy")).map(it => generic-box.with(kind: it)))),
+    e.filters.or_(..((styles.at("basic") + styles.at("colorful") + styles.at("light")).map(it => generic-box.with(kind: it)))),
     color: black,
     inline: true,
     sep-thickness: none
   )
 
-  // define fancy style
+  // define colorful style
 
-  show: e.show_(e.filters.or_(..(styles.at("fancy").map(it => generic-box.with(kind: it)))),
+  show: e.show_(e.filters.or_(..(styles.at("colorful").map(it => generic-box.with(kind: it)))),
+    it => {
+      set text(style: "italic")
+      it
+    }
+  )
+
+  // define light style
+
+  show: e.show_(e.filters.or_(..(styles.at("light").map(it => generic-box.with(kind: it)))),
     it => {
       set text(style: "italic")
       it

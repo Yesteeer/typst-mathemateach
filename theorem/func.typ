@@ -1,21 +1,21 @@
 #import "@preview/linguify:0.5.0": linguify
 #import "@preview/rich-counters:0.2.2" as rc
-#import "../colors.typ": default-palette
+#import "../color-palettes.typ":  default as default-palette
 
 #let lang-database = toml("../lang.toml")
 
 #let default-styles = (
   "generic-box": "showybox",
-  "theorem": "fancy",
-  "exercise": "fancy",
-  "example": "simple",
-  "proposition": "fancy",
-  "lemma": "fancy",
-  "corollary": "fancy",
-  "definition": "fancy",
-  "remark": "simple",
-  "proof": "simple",
-  "notation": "simple"
+  "theorem": "colorful",
+  "exercise": "basic",
+  "example": "basic",
+  "proposition": "colorful",
+  "lemma": "colorful",
+  "corollary": "colorful",
+  "definition": "colorful",
+  "remark": "basic",
+  "proof": "basic",
+  "notation": "basic"
 )
 
 #let resolve-title(title, kind, counter, name) = {
@@ -81,7 +81,7 @@
   let kind-styles = default-styles + kind-styles
 
   let styles = kind-styles.pairs().fold(
-  ("showybox": (), "fancy": (), "simple": ()),
+  ("showybox": (), "colorful": (), "basic": (), "light": ()),
   (acc, x) => acc.pairs().map(k => 
     if x.at(1) == k.at(0) {(k.at(0), k.at(1) + (x.at(0),))}
     else {(k.at(0), k.at(1))}).to-dict()

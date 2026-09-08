@@ -3,6 +3,7 @@
 #import "exam/exam-themes.typ" 
 #import "exam/header.typ": get-header-pts
 #import "theorem/theorem-themes.typ" 
+#import "color-palettes.typ"
 #import "theorem/models.typ": *
 #import "theorem/rules.typ": (
   set-box,
